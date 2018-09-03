@@ -110,7 +110,7 @@ You can even handle some parameters such as:
 You can specifiy relationships, in order to automate a few more steps of building your CRUDs. You can set the relationship expressions like this:
 
 ```
-relation|class|name
+relation|class|column
 ```
 
 or something like:

@@ -28,12 +28,18 @@ Laravel\Cashier\CashierServiceProvider::class,
 
 ## Setup
 
+Then publish the vendor assets etc:
+
+```php
+php artisan vendor:publish
+```
+
 Add the following to your `app/Http/Kernel.php` to the `routeMiddleware` array:
 ```
 'isAjax' => \Grafite\Commerce\Http\Middleware\isAjax::class,
 ```
 
-Add the following trait to the `app/Modules/UserModel.php`:
+Add the following trait to the `app/Models/User.php`:
 ```
 use Grafite\Commerce\Services\Concerns\hasFavorites;
 ```
@@ -61,10 +67,9 @@ Now you need to add the Billable trait to the `App\Models\UserMeta::class`
 use \Laravel\Cashier\Billable;
 ```
 
-Then publish the vendor assets etc:
+Then migrate!
 
 ```php
-php artisan vendor:publish
 php artisan migrate
 ```
 

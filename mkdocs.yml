@@ -64,7 +64,7 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
-pages:
+nav:
   - Grafite: index.md
   - FAQ: faq.md
   - Contributing: contributing.md
@@ -77,10 +77,11 @@ pages:
     - Starter: builder/starter.md
     - Bootstrap UI: builder/bootstrap.md
     - Activity: builder/activity.md
-    - API: builder/Api.md
+    - API: builder/api.md
     - Billing: builder/billing.md
     - Features: builder/features.md
     - Logs: builder/logs.md
+    - Forge: builder/forge.md
     - Queue: builder/queue.md
     - Notifications: builder/notifications.md
     - Socialite: builder/socialite.md
@@ -89,7 +90,7 @@ pages:
     - Config: cms/config.md
     - API: cms/api.md
     - Multilingual: cms/multilingual.md
-    - Endorsements: cms/endorsements.md
+    - Promotions: cms/promotions.md
     - Upgrade Guide: cms/upgrade.md
     - Modules:
       - Introduction: cms/modules/index.md

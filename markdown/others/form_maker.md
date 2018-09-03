@@ -63,7 +63,7 @@ Columns is an array of the following nature which can be used in place of the co
         'type' => '', // defaults to standard text input
         'placeholder' => 'User Name Goes Here!',
         'alt_name' => 'User Name',
-        'custom' => 'custom DOM attributes etc',
+        'custom' => 'custom DOM attributes etc, can be array or string',
         'class' => 'css class names',
         'before' => '<span class="input-group-addon" id="basic-addon1">@</span>',
         'after' => '<span class="input-group-addon" id="basic-addon2">@example.com</span>',

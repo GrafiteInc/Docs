@@ -24,7 +24,7 @@ You need to change it to resemble this:
 }
 ```
 
-Add this to the .env:
+Add these to the .env:
 ```php
 SUBSCRIPTION=app_basic
 STRIPE_SECRET=secret-key
@@ -65,7 +65,7 @@ You will also want to update your webpack mix file to resemble (webpack.mix.js):
 You may want to add this line to your navigation:
 
 ```php
-<li><a href="{!! url('user/billing/details') !!}"><span class="fa fa-dollar"></span> Billing</a></li>
+<li><a href="{{ url('user/billing/details') }}"><span class="fa fa-dollar"></span> Billing</a></li>
 ```
 
 ### Notes

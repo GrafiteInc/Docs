@@ -65,7 +65,7 @@ Just add this code to the `map()` method in the `RouteServiceProvider.php`:
 
 ```php
 $segments = request()->segments();
-$supportedLanguages = array_keys(config('quarx.languages'));
+$supportedLanguages = array_keys(config('cms.languages'));
 
 if (isset($segments[0]) && in_array($segments[0], $supportedLanguages)) {
     $language = $segments[0];

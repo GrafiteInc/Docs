@@ -131,3 +131,24 @@ h1, h2, .drawer .section {
     float: left;
     font-size: 12px;
 }
+
+.grafite-prods img {
+    margin-left: 16px;
+    margin-top: 48px;
+    width: 156px;
+}
+
+@media (max-width: 576px) {
+    .grafite-prods img {
+        display: none;
+    }
+    .logo .icon, .builder-icon, .cms-icon, .commerce-icon {
+        width: 357px;
+        margin-left: calc(50% - 178.5px);
+        max-height: 155px;
+        margin-top: 48px;
+    }
+    .commerce-icon {
+        max-height: 118px;
+    }
+}

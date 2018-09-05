@@ -12,7 +12,7 @@ php artisan grafite:features
 You may want to add this line to your navigation:
 
 ```html
-<li><a href="{!! url('admin/features') !!}"><span class="fa fa-check"></span> Features</a></li>
+<li class="nav-item"><a class="nav-link" href="{!! url('admin/features') !!}"><span class="fa fa-cog"></span> Features</a></li>
 ```
 
 Add to your `config/app.php` the following:

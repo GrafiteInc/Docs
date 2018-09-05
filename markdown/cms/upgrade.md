@@ -17,6 +17,7 @@ Due to the rebranding of Grafite CMS we had to draw a line, and cause breaking c
 
 | Package Version | Broken Compatibility | Database Changes | Theme Compatibility |
 |-----------------|-----------------|-----------------|-----------------|
+| 3.2.x | None | None | Frontend/Backend |
 | 3.0.x - 3.1.x | None | None | Frontend/Backend |
 | 2.4.x - 3.0.x | Quarx namespace, config file name, composer autoload, backend UI, and more | None | Frontend (partial - change quarx to cms) |
 | 1.4.x - 2.0.x | None | Backward compatible changes | Frontend/Backend |

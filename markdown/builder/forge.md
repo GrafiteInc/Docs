@@ -1,4 +1,4 @@
-# Application Forge
+# Forge Integration
 
 The FORGE component provides you with access to the FORGE API in your admin panel. Rather than having to log into FORGE for each adjustment, now
 you can simply log into your own application and in the admin panel adjust the scheduler, or workers on your server configuration.
@@ -17,9 +17,9 @@ php artisan grafite:forge
 You may want to add this line to your navigation:
 
 ```html
-<li><a href="{{ url('admin/forge/settings') }}"><span class="fa fa-fw fa-server"></span> Forge Settings</a></li>
-<li><a href="{{ url('admin/forge/scheduler') }}"><span class="fa fa-fw fa-calendar"></span> Forge Calendar</a></li>
-<li><a href="{{ url('admin/forge/workers') }}"><span class="fa fa-fw fa-cogs"></span> Forge Workers</a></li>
+<li class="nav-item"><a href="{{ url('admin/forge/settings') }}"><span class="fa fa-fw fa-server"></span> Forge Settings</a></li>
+<li class="nav-item"><a href="{{ url('admin/forge/scheduler') }}"><span class="fa fa-fw fa-calendar"></span> Forge Calendar</a></li>
+<li class="nav-item"><a href="{{ url('admin/forge/workers') }}"><span class="fa fa-fw fa-cogs"></span> Forge Workers</a></li>
 ```
 
 Add this to the `app/Providers/RouteServiceProvider.php` in the `mapWebRoutes(Router $router)` function:

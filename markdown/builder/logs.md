@@ -11,7 +11,7 @@ php artisan grafite:logs
 You may want to add this line to your navigation:
 
 ```html
-<li><a href="{!! url('admin/logs') !!}"><span class="fa fa-line-chart"></span> Logs</a></li>
+<li class="nav-item"><a href="{!! url('admin/logs') !!}"><span class="fa fa-line-chart"></span> Logs</a></li>
 ```
 
 Add this to the `app/Providers/RouteServiceProvider.php` in the `mapWebRoutes(Router $router)` function:

@@ -16,6 +16,7 @@ Due to the rebranding of Grafite Builder we had to draw a line, and cause breaki
 
 | Package Version | Broken Compatibility |
 |-----------------|-----------------|
+| 2.5.x | None |
 | 2.4.x | Any `yab` namespaced package |
 | 1.0.x - 2.3.x | None |
 

@@ -109,7 +109,7 @@ Gate::define('cms-api', function ($user) {
 });
 ```
 
-Or Using Laracogs:
+Or Using Grafite Builder:
 ```
 Gate::define('cms', function ($user) {
     return ($user->roles->first()->name === 'admin');

@@ -73,7 +73,7 @@ Then migrate!
 php artisan migrate
 ```
 
-If you wish to maintain consistency with the store accross your login, user settings etc you can set the extends to `@extends('quazar-frontend::layouts.store')`
+If you wish to maintain consistency with the store accross your login, user settings etc you can set the extends to `@extends('commerce-frontend::layouts.store')`
 Views you may wish to change for optimal consistency:
 
 ```

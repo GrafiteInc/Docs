@@ -24,9 +24,14 @@ Add this to your app config under aliases:
 'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 ```
 
-Add this to the `app/Providers/RouteServiceProvider.php` in the `mapWebRoutes(Router $router)` function:
+Add `require base_path('routes/socialite.php');` to the `app/Providers/RouteServiceProvider.php` in the `mapWebRoutes(Router $router)` function:
 ```php
-require base_path('routes/socialite.php');
+Route::middleware('web')
+    ->namespace($this->namespace)
+    ->group(function () {
+        require base_path('routes/socialite.php');
+        require base_path('routes/web.php');
+    });
 ```
 
 Finally set the access details in the services config:

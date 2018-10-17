@@ -138,6 +138,11 @@ h1, h2, .drawer .section {
     width: 156px;
 }
 
+.missioncontrol-copy {
+    margin: 16px;
+    display: block;
+}
+
 @media (max-width: 576px) {
     .grafite-prods img {
         display: none;

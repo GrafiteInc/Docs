@@ -123,11 +123,19 @@ Once you get the starter kit running you can register and login to your app. You
 Grafite Builder updated the basic controllers to handle things like creating a profile when a user is registered, as well as setting default return routes to `dashboard` etc. It also provides contollers for handling profile modifications and pages, team management etc. The admin controller handles the admin of users, modifying a user provided the user has the admin role.
 
 * app/Http/Controllers/
-    * User/PasswordController.php
-    * User/SettingsController.php
-    * Admin/UserController.php
-    * Auth/AuthController.php
-    * Auth/PasswordController.php
+    * Admin/
+        * DashboardController.php
+        * UserController.php
+        * RoleController.php
+    * Auth/
+        * ActivateController.php
+        * ForgotPasswordController.php
+        * LoginController.php
+        * RegisterController.php
+        * ResetPasswordController.php
+    * User/
+        * PasswordController.php
+        * SettingsController.php
     * PagesController.php
     * TeamController.php
 
@@ -135,23 +143,44 @@ Grafite Builder updated the basic controllers to handle things like creating a p
 Grafite Builder overwrites the default middleware due to changes in the redirects. It also provides the `Admin` middleware for route level protection relative to roles.
 
 * app/Http/Middleware/
+    * Active.php
     * Admin.php
-    * Authenticate.php
+    * Permissions.php
     * RedirectIfAuthenticated.php
+    * Roles.php
 
 #### Requests
 There are requests provided for handling the creation of Teams and updating of all components. Here we integrate the rules required that are able to run the validations and return errors. (If you're using Grafite Builder FormMaker Facade then it will even handling accepting the errors and highlighting the appropriate fields.)
 
 * app/Http/Requests/
-    * UserMetaUpdateRequest.php
-    * TeamUpdateRequest.php
-    * TeamCreateRequest.php
     * PasswordUpdateRequest.php
+    * RoleCreateRequest.php
+    * TeamCreateRequest.php
+    * TeamUpdateRequest.php
+    * UserInviteRequest.php
+    * UserUpdateRequest.php
 
 #### Routes
 Given that there are numerous routes added to handle teams, profiles, password etc all routes are overwritten with the starter kit.
 
 * routes/web.php
+
+#### Config
+The permissions config file is published, this is a way for you to set access levels and types of permissions `Roles` can have
+
+* config/permissions.php
+
+#### Events
+The events for various actions.
+
+* app/Events/
+    * UserRegisteredEmail.php
+
+#### Listeners
+The event listeners for various actions.
+
+* app/Listeners/
+    * UserRegisteredEmailListener.php
 
 #### Models
 Models are obvious, but when we then integrate Services below which handle all the buisness logic etc which make the calls to the models we implement SOLID practices, the Controller, Console or other Service, which calls the service only accesses the model through it. Once these have been integrated please ensure you delete the `User.php` model file and ensure that you have followed the installation and config instructions.
@@ -162,17 +191,34 @@ Models are obvious, but when we then integrate Services below which handle all t
     * Team.php
     * Role.php
 
+#### Notifications
+These are all our emails that we need to send out to the users in the application. These are amazing since they use the power of Laravel's notifcation component.
+
+* app/Notficiations/
+    * ActivateUserEmail.php
+    * NewAccountEmail.php
+    * ResetPasswordEmail.php
+
 #### Services
 Service structure allows us to keep the buisness logic outside of the models, and controllers. This approach is best suited for apps that may wish to integrate an API down the road or other things. It also allows for a highly testable structure to the application.
 
 * app/Services/
-    * UserService.php
-    * TeamService.php
+    * Traits/
+        * HasRoles.php
+        * HasTeams.php
+    * ActivateService.php
     * RoleService.php
+    * TeamService.php
+    * UserService.php
 
 #### Database
 Please ensure that all migrations and seeds are run post installation. These seeds set the default roles available in your application.
 
+* database/factories/
+    * RoleFactory.php
+    * TeamFactory.php
+    * UserFactory.php
+    * UserMetaFactory.php
 * database/migrations/
     * 2015_11_30_191713_create_user_meta_table.php
     * 2015_11_30_215038_create_roles_table.php
@@ -184,51 +230,58 @@ Please ensure that all migrations and seeds are run post installation. These see
     * RolesTableSeeder.php
     * UserTableSeeder.php
 
-#### Factories
-Factories for each of the models are appended to the `database/factories/ModelFactory.php` file.
-
 #### Views
 The views consist of as little HTML as possible to perform the logical actions. These are intended to be the most basic, and all of which are intended to be modified.
 
 * resources/views/
-    * user/
-        * meta.blade.php
-        * password.blade.php
-        * settings.blade.php
     * admin/
+        * roles/
+            * edit.blade.php
+            * index.blade.php
+            * invite.blade.php
         * users/
             * edit.blade.php
             * index.blade.php
             * invite.blade.php
+        * dashboard.blade.php
     * auth/
+        * activate/
+            * email.blade.php
+            * token.blade.php
+        * passwords/
+            * email.blade.php
+            * reset.blade.php
         * login.blade.php
-        * password.blade.php
         * register.blade.php
-        * reset.blade.php
-    * dashboard.blade.php
-    * emails/
-        * new-user.blade.php
-        * password.blade.php
     * errors/
+        * 401.blade.php
         * 404.blade.php
         * 503.blade.php
     * partials/
         * errors.blade.php
         * message.blade.php
+        * status.blade.php
     * team/
         * create.blade.php
         * edit.blade.php
         * index.blade.php
         * show.blade.php
+    * user/
+        * meta.blade.php
+        * password.blade.php
+        * settings.blade.php
+    * dashboard.blade.php
 
 #### Tests
 Grafite Builder starter kit provides the basic unit tests for each of its own parts. This provides some great examples of testing for building an application quickly.
 
 * tests/
-    * UserServiceTest.php
-    * TeamIntegrationTest.php
-    * TeamServiceTest.php
-    * RoleServiceTest.php
+    * Feature/
+        * TeamIntegrationTest.php
+    * Unit/
+        * UserServiceTest.php
+        * TeamServiceTest.php
+        * RoleServiceTest.php
 
 ## After Setup
 

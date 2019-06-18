@@ -1,239 +1,166 @@
 # Form Maker
 
-The form maker helps developers build entire forms with as little as one line of code. You can generate forms with things such as: an array, a table, or an object. The methods are highly customizable and allow you to control each of the components of your data, and write as little HTML as possible, or as much as you want.
+Our Form Maker package is designed to give developers to freedom to build forms via classes and set the fields in those classes comfortably. You can easily pass a form to a view and it will render the whole form, reducing your need to type out divs, labels, inputs and more.
 
-If you wish to use an alternate connection to access a table and generate a form, you can use the `setConnection` method.
+!!! warning "Form Maker by default is tightly set to Bootstrap's classes."
 
 ## Set Alternate Connections
 
 ```
-FormMaker::setConnection('alternate')->fromTable('books');
-```
-
-## Blade Directives
-
-```
-@form_maker_table()
-@form_maker_object()
-@form_maker_array()
-@form_maker_columns()
+app(UserForm::class)->setConnection('alternate');
 ```
 
 ## Helpers
 
 ```
-form_maker_table()
-form_maker_object()
-form_maker_array()
-form_maker_columns()
-```
-
-## Facades
-
-```
-FormMaker::fromTable()
-FormMaker::fromObject()
-FormMaker::fromArray()
-FormMaker::getTableColumns()
+form() // access the `Form` class
 ```
 
 ## Common Components
 
-## Simple Fields
+## Fields
 
-These components are the most simplistic:
-
-```
-class: 'a css class'
-reformatted: true|false // Reformats the column name to remove underscores etc
-populated: true|false // Fills in the form with values
-idAndTimestamps: true|false // ignores the id and timestamp columns
-```
-
-### Columns
-
-Columns is an array of the following nature which can be used in place of the columns component in any of the fromX methods:
+Fields are PHP objects which define types, options, attributes etc for the Form Object. This lets you design forms and update them easily via a single object rather than having to update HTML files for multiple roles in your application.
 
 ```
-[
-    'id' => [
-        'type' => 'hidden',
-    ],
-    'name' => [
-        'type' => '', // defaults to standard text input
-        'placeholder' => 'User Name Goes Here!',
-        'alt_name' => 'User Name',
-        'custom' => 'custom DOM attributes etc, can be array or string',
-        'class' => 'css class names',
-        'before' => '<span class="input-group-addon" id="basic-addon1">@</span>',
-        'after' => '<span class="input-group-addon" id="basic-addon2">@example.com</span>',
-    ],
-    'job' => [
-        'type' => 'select',
-        'alt_name' => 'Your Job',
-        'custom' => 'multiple', // custom attributes like multiple, disabled etc
-        'options' => [
-            'key 1' => 'value_1',
-            'key 2' => 'value_2',
-        ]
-    ],
-    'roles' => [
-        'type' => 'relationship',
-        'class' => 'App\Repositories\Roles\Roles',
-        'label' => 'name' // the field for the label in the select input generated
-    ]
-]
+FIELD_OPTIONS
+type: A type string such as text or file
+options: Options for <select> type
+legend: A label for the legend of horizontal checkboxes
+label: A label
+model: Model class for the HasOne and HasMany Fields
+model_options: Model options
+    label: The label attribute on the model
+    value: The value attribute on the model
+    method: A custom method to run on the model
+    params: Parameters to send to the custom method
+before: Text or HTML you wish to put before an input
+after: Text or HTML you wish to put after the input
+view: A view path to a custom template
+attributes: HTML attributes for your input field
+format: Format for DateTime objects
 ```
 
-Types supported in the Column Config:
+There are a large collection of Fields available out of the box and a `make:field {name}` command in case you need custom ones. Fields generate a config array which is then processed by the `FieldMaker` and `FieldBuilder` to create forms for easy use.
 
-* text (converts to textarea)
-* password
-* checkbox
-* checkbox-inline
-* radio
-* select
-* hidden
-* number
-* float
-* decimal
+#### Available Fields
 
-_** If no type is set the FormMaker will default to a standard text input_
+```
+Checkbox
+CheckboxInline
+Color
+CustomFile
+Date
+DatetimeLocal
+Decimal
+Email
+File
+HasMany
+HasOne
+Hidden
+Image
+Month
+Number
+Password
+Radio
+RadioInline
+Range
+Telephone
+Text
+TextArea
+Time
+Url
+Week
+```
 
-Columns with the following names will not be displayed by default: id, created_at, updated_at. You would need to override this setting in the creation of the form.
+### Form
 
-### View
+The Form class lets us generate simple forms with minimal code.
 
-You can create a custom view that the FormMaker will use: This is an example:
+```
+form()->action('method', 'route', 'button text', $html_attributes);
+```
+
+Generates a form using the method and route with a button, for easier addition of delete buttons and more,
+
+```
+form()->confirm('Are you sure?');
+```
+
+Adds a confirmation popup to the button.
+
+```
+form()->open($options);
+```
+
+Opens a form allowing you to specify options: action, method, attributes etc.
+
+```
+form()->model($model, $options);
+```
+
+Open a form based on a model
+
+---
+
+### ModelForm
+
+Using the `make:form {model}` command you can quickly generate forms for Models. This will let you generate forms based on the model.
+
+```
+app(UserForm::class)->create();
+app(UserForm::class)->edit($user);
+app(UserForm::class)->delete($user);
+```
+
+Within this `UserForm` class you can set the fields in in the `fields` method:
+
+```
+public function fields()
+{
+    return [
+        Text::make('name', [
+            'required' => true,
+        ]),
+        Email::make('email', [
+            'required' => true
+        ]),
+    ];
+}
+```
+
+This will generate a form with these fields only. You can also set the `orientation` if you wish to use labels on the left side instead of above and `columns` if you wish to generate a form in which the fields are split into more columns.
+
+### Custom View for Fields
+
+You can create a custom view that the FormMaker will use for your fields. Just have you view file follow this pattern:
 
 ```
 <div class="row">
-    <div class="form-group {{ $errorHighlight }}">
+    <div class="form-group">
         <label class="control-label" for="{!! $labelFor !!}">{!! $label !!}</label>
         <div class="row">
-            {!! $input !!}
+            {!! $field !!}
         </div>
     </div>
-    {!! $errorMessage !!}
+    {!! $errors !!}
 </div>
 ```
 
 ## Relationships
 
-FormMaker can handle the following relationships: `hasOne`,`hasMany`,`belongsTo`,`belongsToMany`
-You can set the config as such for something like 'Roles'. You will notice that the class is the actual object, we need this to be able
-to pull in the existing relations.
+FormMaker can handle the following relationships: `hasOne`,`hasMany`
+
+You can set the Field for something like 'Roles' as below.
 
 ```
-'roles' => [
-    'type' => 'relationship',
-    'multiple' => true,
-    'class' => auth()->user(),
-    'method' => 'roles',
-    'options' => app('App\Repositories\Roles\Roles')->all(),
-    'label' => 'name',
-    'value' => 'id',
-]
+HasOne::make('role', [
+    'model' => Role::class,
+    'model_options' => [
+        'label' => 'name',
+        'value' => 'id',
+        'method' => 'all',
+        'params' => null,
+    ]
+]);
 ```
-
-## fromTable()
-
-```
-FormMaker::fromTable($table, $columns = null, $class = 'form-control', $view = null, $reformatted = true, $populated = false, $idAndTimestamps = false)
-```
-
-### Example:
-
-```
-FormMaker::fromTable('users')
-```
-
-The fromTable method will crawl the specified table and build the form out of the columns and types of coloumns. You can freely customize it (see below) the basic above example will result in:
-
-```
-<div class="form-group ">
-    <label class="control-label" for="Name">Name</label>
-    <input  id="Name" class="form-control" type="" name="name" placeholder="Name">
-</div>
-<div class="form-group ">
-    <label class="control-label" for="Email">Email</label>
-    <input  id="Email" class="form-control" type="" name="email" placeholder="Email">
-</div>
-<div class="form-group ">
-    <label class="control-label" for="Password">Password</label>
-    <input  id="Password" class="form-control" type="" name="password" placeholder="Password">
-</div>
-<div class="form-group ">
-    <label class="control-label" for="Remember_token">Remember Token</label>
-    <input  id="Remember_token" class="form-control" type="" name="remember_token" placeholder="Remember Token">
-</div>
-```
-
-
-## fromObject()
-
-Within the same rules as above we can rather than provide a table string we can insert an object such as `Auth::user()` or any single object retrieved from the database.
-
-```
-fromObject($object, $columns = null, $view = null, $class = 'form-control', $populated = true, $reformatted = false, $idAndTimestamps = false)
-```
-
-## fromArray()
-
-From array works in the same context as fromTable, and fromObject, we're able to in this case provide a simple array list of properties. The key difference with fromArray is that we can provide these in one of two formats:
-
-```
-[ 'name', 'birthday' ]
-```
-
-OR
-
-```
-[ 'name' => 'string', 'birthday' => 'date' ]
-```
-
-The full list of field types compatible are:
-
-* integer
-* string
-* datetime
-* date
-* float
-* binary
-* blob
-* boolean
-* datetimetz
-* time
-* array
-* json_array
-* object
-* decimal
-* bigint
-* smallint
-
-```
-fromArray($array, $columns = null, $view = null, $class = 'form-control', $populated = true, $reformatted = false, $idAndTimestamps = false)
-```
-
-## getTableColumns()
-
-The getTableColumns method utilizes Doctrines Dbal component to map your database table and provide the columns and types. This is perfect initial builds of an editor form off an object.
-
-Example:
-
-```
-FormMaker::fromObject(Books::find(1), FormMaker::getTableColumns('books'))
-```
-
-This will build the form off the columns of the table. Though the fromObject will scan through the object, but providing the table columns as the columns input allows the inputs to be set to thier correct type.
-
-## Design
-
-Sometimes you need to customize how many columns are set for a specific group of inputs. You can easily control that with the FormMaker by using the following chained method:
-
-```
-FormMaker::setColumns(3)->fromObject(Books::find(1), FormMaker::getTableColumns('books'))
-```
-
-This will generate the form using a 3 column layout.
-

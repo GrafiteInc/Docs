@@ -116,9 +116,6 @@ nav:
     - Getting Started: cli/index.md
     - Commands: cli/commands.md
   - Others:
-    - CRUD Maker: others/crud.md
     - Crypto: others/crypto.md
     - Form Maker: others/form_maker.md
-    - Input Maker: others/input_maker.md
     - HomeForge: others/homeforge.md
-

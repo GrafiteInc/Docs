@@ -16,8 +16,6 @@ app(UserForm::class)->setConnection('alternate');
 form() // access the `Form` class
 ```
 
-## Common Components
-
 ## Fields
 
 Fields are PHP objects which define types, options, attributes etc for the Form Object. This lets you design forms and update them easily via a single object rather than having to update HTML files for multiple roles in your application.
@@ -73,7 +71,7 @@ Url
 Week
 ```
 
-### Form
+## Form
 
 The Form class lets us generate simple forms with minimal code.
 
@@ -103,7 +101,7 @@ Open a form based on a model
 
 ---
 
-### ModelForm
+## ModelForm
 
 Using the `make:form {model}` command you can quickly generate forms for Models. This will let you generate forms based on the model.
 
@@ -147,7 +145,7 @@ You can create a custom view that the FormMaker will use for your fields. Just h
 </div>
 ```
 
-## Relationships
+### Relationships
 
 FormMaker can handle the following relationships: `hasOne`,`hasMany`
 

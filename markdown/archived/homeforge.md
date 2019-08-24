@@ -1,5 +1,8 @@
 # Homeforge
 
+!!! Warning
+    This package is archived and no longer supported (2019-08-24)
+
 It only seems sensible to have a console tool that can easily add and remove projects from Homestead rather than force us developers to manually edit files each time.
 
 !!! Tip

@@ -4,6 +4,20 @@ Our Form Maker package is designed to give developers to freedom to build forms 
 
 !!! warning "Form Maker by default is tightly set to Bootstrap's classes."
 
+The form maker
+
+## Artisan Commands
+
+Generate a form for a specific model using this make command. It will add the ModelForm to a Forms directory in the `app/Html/Forms` namespace.
+```
+make:model-form {model}
+```
+
+Generate a generic form with a specific name using this command. It will add the BaseForm to a Forms directory in the `app/Html/Forms` namespace.
+```
+make:base-form {name}
+```
+
 ## Set Alternate Connections
 
 ```
@@ -82,10 +96,21 @@ form()->action('method', 'route', 'button text', $html_attributes);
 Generates a form using the method and route with a button, for easier addition of delete buttons and more,
 
 ```
-form()->confirm('Are you sure?');
+form()->confirm('Are you sure?')->action(...);
+```
+Adds a confirmation popup to the button.
+
+If you wish to handle the confirm using a modal or other JS integration you can pass a `method` name into the confirm method which will trigger that JS method:
+
+```
+form()->confirm('Are you sure you want to delete this?', 'confirmation')->action(...);
 ```
 
-Adds a confirmation popup to the button.
+This will add the following to the submit button in the form:
+
+```
+onclick="confirmation(event, 'Are you sure you want to delete this?')"
+```
 
 ```
 form()->open($options);

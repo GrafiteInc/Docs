@@ -16,11 +16,11 @@ When developing packages we do our best to separate concerns and keep the data f
 
 ## Modular Growth
 
-Grafite follows a modular growth structure through the use of packages. We believe that if the code is reusable enough it can become its own package. If an application needs to deviate from the package enough then the package can be transfered into the application's base code. All projects are different and require analysis to determine the best course of action. As such, we have developed packages to handle anything from subscription based applications, to CMS integration and even custom e-commerce platforms.
+Grafite follows a modular growth structure through the use of packages. We believe that if the code is reusable enough it can become its own package. If an application needs to deviate from the package enough then the package can be transferred into the application's base code. All projects are different and require analysis to determine the best course of action. As such, we have developed packages to handle anything from subscription based applications, to CMS integration and even custom e-commerce platforms.
 
 ## Code has a Short Life
 
-We believe in creating tools that help people build amazing things, but in that same context we know that not all things last long. Sometimes we devlop packages that need to be discarded. Sometimes features get removed if they prove to not serve a purpose. All code has an expiration date connected to it, as the infrastructure changes and the maintainers come and go. Though we aim to provide long lasting packages we hold firmly to the idea, that sometimes writing something all over again is the only way forward.
+We believe in creating tools that help people build amazing things, but in that same context we know that not all things last long. Sometimes we develop packages that need to be discarded. Sometimes features get removed if they prove to not serve a purpose. All code has an expiration date connected to it, as the infrastructure changes and the maintainers come and go. Though we aim to provide long lasting packages we hold firmly to the idea, that sometimes writing something all over again is the only way forward.
 
 #### We're not perfect
 

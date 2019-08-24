@@ -1,4 +1,4 @@
-site_name: 'Grafite Inc Packages'
+site_name: 'Grafite Packages'
 site_author: Matt Lantz
 
 # Repository
@@ -14,7 +14,6 @@ theme:
   name: 'material'
   custom_dir: 'theme'
   palette:
-    primary: 'green'
     accent: 'grey'
   feature:
     tabs: true
@@ -68,8 +67,7 @@ nav:
   - Grafite: index.md
   - FAQ: faq.md
   - Contributing: contributing.md
-  - Release Notes: release_notes.md
-  - Screenshots: screenshots.md
+  # - Screenshots: screenshots.md
   - License: license.md
   - Builder:
     - Getting Started: builder/getting_started.md
@@ -112,10 +110,9 @@ nav:
     - Config: commerce/config.md
     - Logistic Service: commerce/logistics.md
     - Extending: commerce/extending.md
-  - CLI:
-    - Getting Started: cli/index.md
-    - Commands: cli/commands.md
-  - Others:
-    - Crypto: others/crypto.md
-    - Form Maker: others/form_maker.md
-    - HomeForge: others/homeforge.md
+  - Utilities:
+    - Form Maker: utilities/form_maker.md
+  - Archived:
+    - Crypto: archived/crypto.md
+    - HomeForge: archived/homeforge.md
+    - CLI: archived/cli.md

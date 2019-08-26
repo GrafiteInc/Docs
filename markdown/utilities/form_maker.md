@@ -24,6 +24,12 @@ make:base-form {name}
 app(UserForm::class)->setConnection('alternate');
 ```
 
+Or in the `UserForm` itself:
+
+```
+$connection = 'alternate';
+```
+
 ## Helpers
 
 ```
@@ -83,6 +89,84 @@ TextArea
 Time
 Url
 Week
+```
+
+## Sections
+
+The various Form Objects allow you to set Sections. For example, you may have a `BlogForm` and you may want one row to have three columns while the next row has two, this can be achieved with the `setSections` method.
+
+```
+$columns = 1;
+
+public function fields()
+{
+    return [
+        Text::make('title', [
+            'required' => true,
+        ]),
+        Text::make('url', [
+            'required' => true
+        ]),
+        TextArea::make('entry', []),
+        Date::make('published_at', []),
+    ];
+}
+```
+
+By default this will build a form with single column content. If you wish to set these fields to specific layouts you need to set the `columns` to `sections`
+
+```
+$columns = 'sections';
+
+public function fields()
+{
+    return [
+        Text::make('title', [
+            'required' => true,
+        ]),
+        Text::make('url', [
+            'required' => true
+        ]),
+        TextArea::make('entry', []),
+        Date::make('published_at', []),
+    ];
+}
+
+public function setSections()
+{
+    return [
+        [
+            'title',
+            'url',
+        ],
+        [
+            'entry'
+        ],
+        [
+            'published_at'
+        ]
+    ];
+}
+```
+
+The above will produce a form that is two columns, one, and one. You can add a `key` to the sections to add a horizontal line and a header.
+
+```
+public function setSections()
+{
+    return [
+        [
+            'title',
+            'url',
+        ],
+        'Content' => [
+            'entry'
+        ],
+        [
+            'published_at'
+        ]
+    ];
+}
 ```
 
 ## Form

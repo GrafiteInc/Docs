@@ -2,6 +2,8 @@
 
 Laravel has a great set of helpers for String and Arrays. We felt it would be really nice if some of these were available for our Vue components as well.
 
+[Source Code](https://github.com/grafiteinc/helpers)
+
 !!! warning "Helper is a mirroring of Laravel's helper methods, but in some cases will not work due to JavaScripts typecasting."
 
 ## String Helpers

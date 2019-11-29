@@ -2,6 +2,8 @@
 
 Our Form Maker package is designed to give developers to freedom to build forms via classes and set the fields in those classes comfortably. You can easily pass a form to a view and it will render the whole form, reducing your need to type out divs, labels, inputs and more.
 
+[Source Code](https://github.com/grafiteinc/formMaker)
+
 !!! warning "Form Maker by default is tightly set to Bootstrap's classes."
 
 The form maker

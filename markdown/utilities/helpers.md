@@ -86,7 +86,7 @@ Laravel has a great set of helpers for String and Arrays. We felt it would be re
 **limit**: Truncates a string to the given limit
 ```
 "foo bar".limit(5);
-// "foo-b..."
+// "foo b..."
 ```
 
 **plural**: Converts a string to its plural form (English)

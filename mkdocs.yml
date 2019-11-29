@@ -112,6 +112,7 @@ nav:
     - Extending: commerce/extending.md
   - Utilities:
     - Form Maker: utilities/form_maker.md
+    - Helpers: utilities/helpers.md
   - Archived:
     - Crypto: archived/crypto.md
     - HomeForge: archived/homeforge.md

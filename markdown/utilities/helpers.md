@@ -28,13 +28,13 @@ Laravel has a great set of helpers for String and Arrays. We felt it would be re
 
 **before**: Returns everything before the given value
 ```
-"This is my name".afterLast("my name");
+"This is my name".before("my name");
 // 'This is '
 ```
 
 **beforeLast**: Returns everything before the last occurrence of the given value
 ```
-"This is my name".afterLast("is");
+"This is my name".beforeLast("is");
 // 'This '
 ```
 

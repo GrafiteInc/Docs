@@ -20,7 +20,7 @@ Add this to the `app/Providers/RouteServiceProvider.php` file in the `mapWebRout
 require base_path('routes/api.php');
 ```
 
-Add to the app/Http/Kernal.php under routeMiddleware:
+Add to the app/Http/Kernel.php under routeMiddleware:
 ```php
 'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
 'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,

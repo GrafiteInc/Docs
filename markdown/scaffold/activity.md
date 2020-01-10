@@ -14,14 +14,6 @@ Add to your `config/app.php` the following:
 App\Providers\ActivityServiceProvider::class,
 ```
 
-## Facades
-Provides the following tool for in app features:
-
-```php
-Activity::log($description);
-Activity::getByUser($userId);
-```
-
 ## Helper
 
 ```php

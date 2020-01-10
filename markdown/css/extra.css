@@ -89,6 +89,15 @@ h1, h2, .drawer .section {
     background-position: center center;
 }
 
+.scaffold-icon {
+    display: block;
+    width: 100%;
+    height: 200px;
+    background-image: url('../img/grafite_scaffold.png');
+    background-size: cover;
+    background-position: center center;
+}
+
 .cms-icon {
     display: block;
     width: 500px;

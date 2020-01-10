@@ -64,56 +64,28 @@ markdown_extensions:
   - pymdownx.tilde
 
 nav:
-  - Grafite: index.md
-  - FAQ: faq.md
+  - Home: index.md
+  # - FAQ: faq.md
   - Contributing: contributing.md
-  # - Screenshots: screenshots.md
   - License: license.md
-  - Builder:
-    - Getting Started: builder/getting_started.md
-    - Upgrade Guide: builder/upgrade.md
-    - Starter: builder/starter.md
-    - Bootstrap UI: builder/bootstrap.md
-    - Activity: builder/activity.md
-    - API: builder/api.md
-    - Billing: builder/billing.md
-    - Features: builder/features.md
-    - Logs: builder/logs.md
-    - Forge: builder/forge.md
-    - Queue: builder/queue.md
-    - Notifications: builder/notifications.md
-    - Socialite: builder/socialite.md
-  - CMS:
-    - Getting Started: cms/index.md
-    - Config: cms/config.md
-    - API: cms/api.md
-    - Multilingual: cms/multilingual.md
-    - Promotions: cms/promotions.md
-    - Upgrade Guide: cms/upgrade.md
-    - Modules:
-      - Introduction: cms/modules/index.md
-      - Assets: cms/modules/assets.md
-      - Composer: cms/modules/composer.md
-      - Config: cms/modules/config.md
-      - CRUD: cms/modules/crud.md
-      - File and Images: cms/modules/files_and_images.md
-      - Generator: cms/modules/make.md
-    - Themes:
-      - Introduction: cms/themes/index.md
-      - Generator: cms/themes/generator.md
-      - Blade: cms/themes/blade.md
-      - Pages and Blocks: cms/themes/pages_and_blocks.md
-      - Publishing: cms/themes/publishing.md
-      - Symlink: cms/themes/symlink.md
-  - Commerce:
-    - Getting Started: commerce/index.md
-    - Config: commerce/config.md
-    - Logistic Service: commerce/logistics.md
-    - Extending: commerce/extending.md
+  - Scaffold:
+    - Getting Started: scaffold/getting_started.md
+    - Upgrade Guide: scaffold/upgrade.md
+    # - Core Features: scaffold/core_features.md
+    # - Activity: scaffold/activity.md
+    # - API: scaffold/api.md
+    # - Billing: scaffold/billing.md
+    # - Notifications: scaffold/notifications.md
+    # - Invites: scaffold/invites.md
   - Utilities:
+    - Overview: utilities/index.md
     - Form Maker: utilities/form_maker.md
     - Helpers: utilities/helpers.md
   - Archived:
+    - Overview: archived/index.md
+    - Builder: archived/builder.md
+    - CMS: archived/cms.md
+    - Commerce: archived/commerce.md
+    - CLI: archived/cli.md
     - Crypto: archived/crypto.md
     - HomeForge: archived/homeforge.md
-    - CLI: archived/cli.md

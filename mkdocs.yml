@@ -29,13 +29,8 @@ extra:
     - type: twitter
       link: https://twitter.com/GrafiteInc
 
-# Google Analytics
-google_analytics:
-  - 'UA-116233000-1'
-  - 'auto'
-
-extra_css: [ 'css/extra.css', 'css/ekko-lightbox.css' ]
-extra_javascript: [ 'js/jquery.js', 'js/ekko-lightbox.js' ]
+extra_css: [ 'css/extra.css' ]
+extra_javascript: [ 'js/jquery.js', 'js/scripts.js', ]
 
 # Extensions
 markdown_extensions:

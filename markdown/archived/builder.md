@@ -974,3 +974,6 @@ The command will overwrite any existing files with the socialite version of them
 
 * app/Http/Controllers/Auth/SocialiteAuthController.php
 * routes/socialite.php
+
+!!! tip
+    If you're looking for a fast way to build applications, then look no further than [Scaffold](https://github.com/GrafiteInc/scaffold), it's a powerful Laravel boilerplate.

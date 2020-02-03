@@ -4,7 +4,7 @@ Our Form Maker package is designed to give developers to freedom to build forms 
 
 [Source Code](https://github.com/grafiteinc/formMaker)
 
-!!! warning "Form Maker by default is tightly set to Bootstrap's classes."
+!!! warning "Form Maker by default is set to Bootstrap's classes. But you can change these in the config."
 
 The form maker
 
@@ -61,6 +61,7 @@ options: Options for <select> type
 legend: A label for the legend of horizontal checkboxes
 null_value: False by default, but allows empty values to be placed at the front of selects
 null_label: Text which is placed as the first option in a select with a blank value
+value: If you set the value of a field it will fill it in, or select it in the case of selects
 label: A label
 model: Model class for the HasOne and HasMany Fields
 model_options: Model options

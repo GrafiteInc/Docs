@@ -66,21 +66,25 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  # - FAQ: faq.md
   - Contributing: contributing.md
   - License: license.md
   - Scaffold:
-    - Getting Started: scaffold/getting_started.md
+    - Introduction: scaffold/introduction.md
+    # - Architecture: scaffold/architecture.md
     - Upgrade Guide: scaffold/upgrade.md
-    # - Core Features: scaffold/core_features.md
-    - Activity: scaffold/activity.md
-    # - API: scaffold/api.md
-    # - Billing: scaffold/billing.md
+    # - Core User: scaffold/user.md
+    # - Activity: scaffold/activity.md
+    # - Teams: scaffold/teams.md
     # - Notifications: scaffold/notifications.md
     # - Invites: scaffold/invites.md
+    # - Billing: scaffold/billing.md
+    # - API: scaffold/api.md
+    # - Admin: scaffold/admin.md
+    # - Roles & Permissions: scaffold/roles_permissions.md
   - Utilities:
     - Overview: utilities/index.md
     - Form Maker: utilities/form_maker.md
+    - Database: utilities/database.md
     - Helpers: utilities/helpers.md
   - Archived:
     - Overview: archived/index.md

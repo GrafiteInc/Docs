@@ -316,6 +316,37 @@ form()->model($model, $options);
 
 Open a form based on a model
 
+## Config
+
+In general all classes are defined in the config, which means you can avoid Boostrap if you want to. You can also set the form class directly on the form itself.
+
+```
+public $formClass = 'form';
+```
+
+This is the default and its overwritten when `horizontal` is set. The remaining defaults are as follows:
+
+```
+'group-class' => 'form-group',
+'label-class' => 'control-label',
+'before_after_input_wrapper' => 'input-group',
+'text-error' => 'text-danger',
+'error-class' => 'has-error',
+
+'sections' => [
+    'column-base' => 'col-md-',
+    'row-class' => 'row',
+    'full-size-column' => 'col-md-12',
+    'header-spacing' => 'mt-2 mb-2',
+    'row-alignment-between' => 'd-flex justify-content-between',
+    'row-alignment-end' => 'd-flex justify-content-end',
+],
+
+'orientation' => 'vertical',
+'label-column' => 'col-md-2 col-form-label',
+'input-column' => 'col-md-10',
+```
+
 ---
 
 ## ModelForm
@@ -408,6 +439,20 @@ With the `delete()` form you can also add the confirmation method like so:
     ->confirm('Are you sure you want to delete your avatar?', 'confirmation')
     ->action('delete', 'user.destroy.avatar', 'delete', ['class' => 'btn btn-sm btn-outline-secondary'])
 !!}
+```
+
+### Accessing the Model Instance
+
+You can access the model instance in a model form, it can give you the freedom to collect data from the model in the case of setting select values etc.
+
+```
+public $instance;
+```
+
+You can also check if its been set by running:
+
+```
+$this->hasInstance()
 ```
 
 ### Custom View for Fields

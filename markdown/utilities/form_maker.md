@@ -467,14 +467,18 @@ You can create a custom view that the FormMaker will use for your fields. Just h
 ```
 <div class="row">
     <div class="form-group">
-        <label class="control-label" for="{!! $labelFor !!}">{!! $label !!}</label>
+        {!! $label !!}
         <div class="row">
             {!! $field !!}
         </div>
     </div>
     {!! $errors !!}
+
+    {!! $options !!}
 </div>
 ```
+
+The values passed to the view are `label`, `field`, `errors`, `options`. The options is how you can pass more abstract configs through, but in all honesty we dont really see many use cases of that.
 
 ### Relationships
 

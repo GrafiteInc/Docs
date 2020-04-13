@@ -4,7 +4,7 @@ Our Form Maker package is designed to give developers to freedom to build forms 
 
 [Source Code](https://github.com/grafiteinc/formMaker)
 
-!!! warning "Form Maker by default is set to Bootstrap's classes. But you can change these in the config."
+!!! warning "Form Maker by default is set to Bootstrap's classes, but you can change these in the config."
 
 The form maker
 
@@ -62,7 +62,7 @@ legend: A label for the legend of horizontal checkboxes
 null_value: False by default, but allows empty values to be placed at the front of selects
 null_label: Text which is placed as the first option in a select with a blank value
 value: If you set the value of a field it will fill it in, or select it in the case of selects
-label: A label
+label: A string or false (if you want the label blank - useful for `legend` uses)
 model: Model class for the HasOne and HasMany Fields
 model_options: Model options
     label: The label attribute on the model
@@ -329,27 +329,49 @@ In general all classes are defined in the config, which means you can avoid Boos
 public $formClass = 'form';
 ```
 
-This is the default and its overwritten when `horizontal` is set. The remaining defaults are as follows:
+Any classes set on the form, or field itself will override the default configs. The following are default configs:
 
 ```
-'group-class' => 'form-group',
-'label-class' => 'control-label',
-'before_after_input_wrapper' => 'input-group',
-'text-error' => 'text-danger',
-'error-class' => 'has-error',
-
-'sections' => [
-    'column-base' => 'col-md-',
-    'row-class' => 'row',
-    'full-size-column' => 'col-md-12',
-    'header-spacing' => 'mt-2 mb-2',
-    'row-alignment-between' => 'd-flex justify-content-between',
-    'row-alignment-end' => 'd-flex justify-content-end',
+'buttons' => [
+    'submit' => 'btn btn-primary',
+    'delete' => 'btn btn-danger',
+    'cancel' => 'btn btn-secondary',
 ],
 
-'orientation' => 'vertical',
-'label-column' => 'col-md-2 col-form-label',
-'input-column' => 'col-md-10',
+'form' => [
+    'class' => 'form',
+    'delete-class' => 'form-inline',
+    'inline-class' => 'form d-inline',
+
+    'group-class' => 'form-group',
+    'input-class' => 'form-control',
+    'label-class' => 'control-label',
+    'label-check-class' => 'form-check-label',
+    'before_after_input_wrapper' => 'input-group',
+    'text-error' => 'text-danger',
+    'error-class' => 'has-error',
+    'check-class' => 'form-check',
+
+    'check-input-class' => 'form-check-input',
+    'check-inline-class' => 'form-check form-check-inline',
+    'custom-file-label' => 'custom-file-label',
+    'custom-file-input-class' => 'custom-file-input',
+    'custom-file-wrapper-class' => 'custom-file',
+
+    'sections' => [
+        'column-base' => 'col-md-',
+        'row-class' => 'row',
+        'full-size-column' => 'col-md-12',
+        'header-spacing' => 'mt-2 mb-2',
+        'row-alignment-between' => 'd-flex justify-content-between',
+        'row-alignment-end' => 'd-flex justify-content-end',
+    ],
+
+    'orientation' => 'vertical',
+    'horizontal-class' => 'form-horizontal',
+    'label-column' => 'col-md-2 col-form-label pt-0',
+    'input-column' => 'col-md-10',
+]
 ```
 
 ---
@@ -436,6 +458,8 @@ This will generate a form with these fields only. You can also set the `orientat
 `$hasFiles` enables the file submission of the form.
 
 `$buttons` enables you to customize the button values for submit and cancel
+
+`$buttonClasses` enables you to customize the button class values for submit, cancel, and delete which can also be done in the config as form default
 
 With the `delete()` form you can also add the confirmation method like so:
 

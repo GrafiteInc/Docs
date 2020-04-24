@@ -1,4 +1,4 @@
-# Application API
+# Basic API
 
 If you feel like opting in for the Laracogs starter kit. You can also easily build in an API layer. Running the <code>grafite:api</code> command will set up the bare bones components, but you can also use the API tools as a part of the CRUD now by using the <code>--api</code> option.
 

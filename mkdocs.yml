@@ -8,61 +8,66 @@ repo_name: 'Grafite Documentation'
 copyright: 'Copyright (c) Grafite Inc'
 
 # Documentation and theme
-docs_dir: 'markdown'
+docs_dir: 'docs'
 site_dir: '../static_websites/docs.grafite.ca'
 theme:
-  name: 'material'
+  name: null
   custom_dir: 'theme'
+  language: en
   palette:
+    primary: 'grafite'
     accent: 'grey'
-  feature:
-    tabs: true
-  logo: 'img/logo.png'
+  features:
+    - tabs
+  icon:
+    logo: material/library
+    repo: fontawesome/brands/git-alt
+  logo: img/logo.png
   font:
     text: 'Roboto'
     code: 'Roboto Mono'
 
 extra:
   social:
-    - type: github-alt
+    - icon: fontawesome/brands/github-alt
       link: https://github.com/GrafiteInc
-    - type: twitter
+    - icon: fontawesome/brands/twitter
       link: https://twitter.com/GrafiteInc
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/grafite-inc
 
 extra_css: [ 'css/extra.css' ]
 extra_javascript: [ 'js/jquery.js', 'js/scripts.js', ]
 
 # Extensions
 markdown_extensions:
-  - markdown.extensions.admonition
-  - markdown.extensions.codehilite:
-      guess_lang: false
-  - markdown.extensions.def_list
-  - markdown.extensions.footnotes
-  - markdown.extensions.meta
-  - markdown.extensions.toc:
-      permalink: true
-  - pymdownx.arithmatex
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.critic
-  - pymdownx.details
   - pymdownx.emoji:
       emoji_index: !!python/name:pymdownx.emoji.twemoji
       emoji_generator: !!python/name:pymdownx.emoji.to_svg
-  - pymdownx.inlinehilite
-  - pymdownx.keys
-  - pymdownx.magiclink:
-      repo_url_shorthand: true
-      user: squidfunk
-      repo: mkdocs-material
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
   - pymdownx.tasklist:
       custom_checkbox: true
-  - pymdownx.tilde
+  - pymdownx.tabbed
+  - markdown.extensions.admonition:
+  - markdown.extensions.smarty:
+      smart_quotes: false
+  - pymdownx.betterem:
+  - markdown.extensions.attr_list:
+  - markdown.extensions.def_list:
+  - markdown.extensions.tables:
+  - markdown.extensions.abbr:
+  - pymdownx.extrarawhtml:
+  - pymdownx.superfences:
+  - pymdownx.highlight:
+      css_class: codehilite
+      extend_pygments_lang:
+        - name: php-inline
+          lang: php
+          options:
+            startinline: true
+  - pymdownx.inlinehilite:
 
 nav:
   - Home: index.md
@@ -70,17 +75,14 @@ nav:
   - License: license.md
   - Scaffold:
     - Introduction: scaffold/introduction.md
-    # - Architecture: scaffold/architecture.md
+    - Overview: scaffold/overview.md
+    - Activity: scaffold/activity.md
+    - API: scaffold/api.md
+    - Billing: scaffold/billing.md
+    - Invites: scaffold/invites.md
+    - Notifications: scaffold/notifications.md
+    - Roles & Permissions: scaffold/roles_permissions.md
     - Upgrade Guide: scaffold/upgrade.md
-    # - Core User: scaffold/user.md
-    # - Activity: scaffold/activity.md
-    # - Teams: scaffold/teams.md
-    # - Notifications: scaffold/notifications.md
-    # - Invites: scaffold/invites.md
-    # - Billing: scaffold/billing.md
-    # - API: scaffold/api.md
-    # - Admin: scaffold/admin.md
-    # - Roles & Permissions: scaffold/roles_permissions.md
   - Utilities:
     - Overview: utilities/index.md
     - Form Maker: utilities/form_maker.md

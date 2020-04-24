@@ -1,4 +1,4 @@
-# Application Billing
+# Stripe Based Billing
 
 If you feel like opting in for the Grafite Builder starter kit. You can also get your app's billing handled quickly with Grafite Builder billing command and `Laravel/Cashier`. Grafite Builder's billing will build a basic controller, views etc so you can stay focused on what makes your application amazing!
 

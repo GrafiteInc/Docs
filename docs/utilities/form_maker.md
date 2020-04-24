@@ -6,8 +6,6 @@ Our Form Maker package is designed to give developers to freedom to build forms 
 
 !!! warning "Form Maker by default is set to Bootstrap's classes, but you can change these in the config."
 
-The form maker
-
 ## Artisan Commands
 
 Generate a form for a specific model using this make command. It will add the ModelForm to a Forms directory in the `app/Html/Forms` namespace.
@@ -43,6 +41,16 @@ Or in the `UserForm` itself:
 ```
 $connection = 'alternate';
 ```
+
+## Blade Directives
+
+Form Maker only has one blade directive and that is for handling any assets you may add to a field. In the case of the `Quill` field we load the CDN assets (javascript and css), and we inject a snippet of JavaScript. These assets need to be rendered in your view. Ideally this is done close to the closing body tag of your main template.
+
+```
+@formMaker
+```
+
+Just place that below any of your JavaScript file references and you can easily load the forms field assets when the For is being rendered on screen.
 
 ## Helpers
 
@@ -84,6 +92,7 @@ There are a large collection of Fields available out of the box and a `make:fiel
 Checkbox
 CheckboxInline
 Color
+Code (includes JS)
 CustomFile
 Date
 DatetimeLocal
@@ -97,6 +106,7 @@ Image
 Month
 Number
 Password
+Quill (includes JS)
 Radio
 RadioInline
 Range

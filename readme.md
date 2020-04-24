@@ -2,14 +2,20 @@
 
 This is the Grafite package documentation repository. It uses Mkdocs.
 
-## Packages
+## Active Packages
+
+- Scaffold
+- FormMaker
+- Database
+- Helpers
+
+## Archived Packages
 
 - Builder
 - CMS
-- Commerce (in progress)
-- CLI (in progress)
+- Commerce
+- CLI
 - CrudMaker
-- FormMaker
 - HomeForge
 - Crypto
 

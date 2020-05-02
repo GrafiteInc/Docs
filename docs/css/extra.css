@@ -172,24 +172,9 @@ h1, h2, .drawer .section {
 }
 
 :root {
-
-  /* Default color shades */
-
-
-  /* Primary color shades */
   --md-primary-fg-color:               #4527a0;
   --md-primary-fg-color--light:        #4527a0;
   --md-primary-fg-color--dark:         #4527a0;
   --md-primary-bg-color:               #FFF;
   --md-primary-bg-color--light:        #FFF;
-
-  /* Accent color shades */
-  /* --md-accent-fg-color:                #FFF;
-  --md-accent-fg-color--transparent:   #FFF;
-  --md-accent-bg-color:                #FFF;
-  --md-accent-bg-color--light:         #FFF; */
-
-  /* Code block color shades */
-  /* --md-code-bg-color:                  ...;
-  --md-code-fg-color:                  ...; */
 }

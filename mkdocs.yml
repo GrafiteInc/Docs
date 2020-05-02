@@ -36,8 +36,11 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/grafite-inc
 
-extra_css: [ 'css/extra.css' ]
-extra_javascript: [ 'js/jquery.js', 'js/scripts.js', ]
+extra_css:
+  - css/extra.css
+extra_javascript:
+  - js/jquery.js
+  - js/scripts.js
 
 # Extensions
 markdown_extensions:

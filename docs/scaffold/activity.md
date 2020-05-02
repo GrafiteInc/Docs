@@ -4,13 +4,15 @@ Sometimes its handy to know what your users are up to when they browse your app.
 
 ## Helper
 
-```php
+```php-inline
 activity($description) // will log the activity
 ```
 
 ## Middleware
 
-```php
+The activity middleware simply runs the helper command stating a standard user action. This can easily be changed or removed if desired.
+
+```php-inline
 App\Middleware\Activity
 
 activity('Standard User Action');

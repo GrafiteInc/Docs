@@ -1,53 +1,20 @@
-# Basic API
+# API
 
-If you feel like opting in for the Laracogs starter kit. You can also easily build in an API layer. Running the <code>grafite:api</code> command will set up the bare bones components, but you can also use the API tools as a part of the CRUD now by using the <code>--api</code> option.
+Scaffold comes with a fully functional API layer. It handles authentication using basic auth using user generated tokens. Tokens can be reset and are encrypted so they're only visible on the moment of reset.
 
-##### Requires
-```php
-composer require tymon/jwt-auth
+## Endpoints
+
+The build endpoints uses the `api.php` routes. In only contains 3 endpoints by default.
+
+```
+api/me
+api/update
+api/destroy
 ```
 
-## Setup
-```
-php artisan grafite:api
-```
+Each has separate handles and the output of the `me` endpoint uses the `UserResource` for handling its explicit output.
 
-Essentially you want to do all the basic setup for JWT such as everything in here:
-Then follow the directions regarding installation on: [https://github.com/tymondesigns/jwt-auth/wiki/Installation](https://github.com/tymondesigns/jwt-auth/wiki/Installation)
+## Base Controller
 
-Add this to the `app/Providers/RouteServiceProvider.php` file in the `mapWebRoutes(Router $router)` function:
-```php
-require base_path('routes/api.php');
-```
+The base controller for the API controllers contains in the constructor method a handling which sets the `user` property of the controller to the `auth('api')->user()`. This way you don't have to keep rewriting that accessor.
 
-Add to the app/Http/Kernal.php under routeMiddleware:
-```php
-'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
-'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
-```
-
-Add to except attribute the app/Http/Middleware/VerifyCsrfToken.php (You also have to do this for CRUDs you add):
-```php
-'api/v1/login',
-'api/v1/user/profile',
-```
-
-If you use Apache add this to the .htaccess file:
-```php
-RewriteEngine On
-RewriteCond %{HTTP:Authorization} ^(.*)
-RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
-```
-
-Also update your jwt config file and set the user to:
-
-```php
-\App\Models\User::class
-```
-
-## What API publishes
-The command will overwrite any existing files with the api version of them:
-
-* app/Http/Controllers/Api/AuthController.php
-* app/Http/Controllers/Api/UserController.php
-* routes/api.php

@@ -13,10 +13,10 @@ composer require grafite/database
 ```
 
 You have to set these database details in your `.env`:
-```
-username
-password
-host
+```env
+DB_HOST=127.0.0.1
+DB_USERNAME=root
+DB_PASSWORD=
 ```
 
 ## Create

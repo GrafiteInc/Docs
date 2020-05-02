@@ -9,36 +9,36 @@ Our Form Maker package is designed to give developers to freedom to build forms 
 ## Artisan Commands
 
 Generate a form for a specific model using this make command. It will add the ModelForm to a Forms directory in the `app/Html/Forms` namespace.
-```
-make:model-form {model}
+```shell
+artisan make:model-form {model}
 ```
 
 Generate a generic form with a specific name using this command. It will add the BaseForm to a Forms directory in the `app/Html/Forms` namespace.
-```
-make:base-form {name}
+```shell
+artisan make:base-form {name}
 ```
 
 The following command will generate a feature test which hits the endpoints of the form.
 
-```
-make:form-test {form}
+```shell
+artisan make:form-test {form}
 ```
 
 If you made a ModelForm you likely want a factory for your model, since we have the fields within the ModelForm class we can generate basic factories.
 
-```
-make:form-factory {form}
+```shell
+artisan make:form-factory {form}
 ```
 
 ## Set Alternate Connections
 
-```
+```php-inline
 app(UserForm::class)->setConnection('alternate');
 ```
 
 Or in the `UserForm` itself:
 
-```
+```php-inline
 $connection = 'alternate';
 ```
 
@@ -46,7 +46,7 @@ $connection = 'alternate';
 
 Form Maker only has one blade directive and that is for handling any assets you may add to a field. In the case of the `Quill` field we load the CDN assets (javascript and css), and we inject a snippet of JavaScript. These assets need to be rendered in your view. Ideally this is done close to the closing body tag of your main template.
 
-```
+```php-inline
 @formMaker
 ```
 
@@ -54,7 +54,7 @@ Just place that below any of your JavaScript file references and you can easily 
 
 ## Helpers
 
-```
+```php-inline
 form() // access the `Form` class
 ```
 
@@ -118,11 +118,45 @@ Url
 Week
 ```
 
+#### Field Assets
+
+Out of the box Form Maker comes with 2 fields which contain field assets. You can add assets to any field, and the Form Maker will collect them and put links to them where you use the blade directive `formMaker`. We suggest below your `app.js` link on your master blade file.
+
+In order to add assets to a field you need to use the following protected methods: `stylesheets`, `scripts`, `js`. The following is an example from the `Quill` field.
+
+```php-inline
+protected static function stylesheets($options)
+{
+    return [
+        "//cdn.quilljs.com/1.3.6/quill.bubble.css",
+        "//cdn.quilljs.com/1.3.6/quill.snow.css",
+    ];
+}
+
+protected static function scripts($options)
+{
+    return ['//cdn.quilljs.com/1.3.6/quill.js'];
+}
+
+protected static function js($id, $options)
+{
+    $theme = $options['theme'] ?? 'snow';
+    $placeholder = $options['placeholder'] ?? '';
+
+    return <<<EOT
+    new Quill('#$id', {
+        theme: '$theme',
+        placeholder: '$placeholder'
+    });
+    EOT;
+}
+```
+
 ## Sections
 
 The various Form Objects allow you to set Sections. For example, you may have a `BlogForm` and you may want one row to have three columns while the next row has two, this can be achieved with the `setSections` method.
 
-```
+```php-inline
 $columns = 1;
 
 public function fields()
@@ -142,7 +176,7 @@ public function fields()
 
 By default this will build a form with single column content. If you wish to set these fields to specific layouts you need to set the `columns` to `sections`
 
-```
+```php-inline
 $columns = 'sections';
 
 public function fields()
@@ -178,7 +212,7 @@ public function setSections()
 
 The above will produce a form that is two columns, one, and one. You can add a `key` to the sections to add a horizontal line and a header.
 
-```
+```php-inline
 public function setSections()
 {
     return [
@@ -200,13 +234,13 @@ public function setSections()
 
 The Form class lets us generate simple forms with minimal code.
 
-```
+```php-inline
 form()->action('method', 'route', 'button text', $html_attributes);
 ```
 
 Generates a form using the method and route with a button, for easier addition of delete buttons and more,
 
-```
+```php-inline
 form()->confirm('Are you sure?')->action(...);
 ```
 Adds a confirmation popup to the button.
@@ -215,19 +249,19 @@ Adds a confirmation popup to the button.
 
 If you wish to handle the confirm using a modal or other JS integration you can pass a `method` name into the confirm method which will trigger that JS method:
 
-```
+```php-inline
 form()->confirm('Are you sure you want to delete this?', 'confirmation')->action(...);
 ```
 
 This will add the following to the submit button in the form:
 
-```
+```js
 onclick="confirmation(event, 'Are you sure you want to delete this?')"
 ```
 
 You will require a `confirmation` method to be defined somewhere such as in `app.js`. Your confirmation method could look something like this, which uses Bootstrap's modal:
 
-```
+```js
 window.confirmation = (_event, _message) => {
     _event.preventDefault();
 
@@ -247,7 +281,7 @@ window.confirmation = (_event, _message) => {
 
 There is also support for an `submitMethod` attribute on all forms. This custom submit allows you to override the standard submit and perform actions against your form. This can be useful if you want to do an ajax submission of your form.
 
-```
+```php
 <?php
 
 namespace App\Http\Forms;
@@ -291,7 +325,7 @@ class UserSecurityForm extends BaseForm
 }
 ```
 
-```
+```js
 window.ajax = (_event) => {
     _event.preventDefault();
 
@@ -319,13 +353,13 @@ window.ajax = (_event) => {
 }
 ```
 
-```
+```php-inline
 form()->open($options);
 ```
 
 Opens a form allowing you to specify options: action, method, attributes etc.
 
-```
+```php-inline
 form()->model($model, $options);
 ```
 
@@ -335,13 +369,13 @@ Open a form based on a model
 
 In general all classes are defined in the config, which means you can avoid Boostrap if you want to. You can also set the form class directly on the form itself.
 
-```
+```php-inline
 public $formClass = 'form';
 ```
 
 Any classes set on the form, or field itself will override the default configs. The following are default configs:
 
-```
+```php-inline
 'buttons' => [
     'submit' => 'btn btn-primary',
     'delete' => 'btn btn-danger',
@@ -390,7 +424,7 @@ Any classes set on the form, or field itself will override the default configs. 
 
 Using the `make:model-form {model}` command you can quickly generate forms for Models. This will let you generate forms based on the model.
 
-```
+```php-inline
 app(UserForm::class)->create();
 app(UserForm::class)->edit($user);
 app(UserForm::class)->delete($user);
@@ -398,7 +432,7 @@ app(UserForm::class)->delete($user);
 
 ### Example
 
-```
+```php
 <?php
 
 namespace App\Http\Forms;
@@ -447,7 +481,7 @@ class UserForm extends ModelForm
 
 Within this `UserForm` class you can set the fields in in the `fields` method:
 
-```
+```php-inline
 public function fields()
 {
     return [
@@ -473,7 +507,7 @@ This will generate a form with these fields only. You can also set the `orientat
 
 With the `delete()` form you can also add the confirmation method like so:
 
-```
+```php-inline
 {!! form()
     ->confirm('Are you sure you want to delete your avatar?', 'confirmation')
     ->action('delete', 'user.destroy.avatar', 'delete', ['class' => 'btn btn-sm btn-outline-secondary'])
@@ -484,13 +518,13 @@ With the `delete()` form you can also add the confirmation method like so:
 
 You can access the model instance in a model form, it can give you the freedom to collect data from the model in the case of setting select values etc.
 
-```
+```php-inline
 public $instance;
 ```
 
 You can also check if its been set by running:
 
-```
+```php-inline
 $this->hasInstance()
 ```
 
@@ -498,7 +532,7 @@ $this->hasInstance()
 
 You can create a custom view that the FormMaker will use for your fields. Just have you view file follow this pattern:
 
-```
+```php-inline
 <div class="row">
     <div class="form-group">
         {!! $label !!}
@@ -522,7 +556,7 @@ For example you may have a `User` who has a `role` which is `belongsToMany`.
 
 You can set the Field for something like 'Roles' as below.
 
-```
+```php-inline
 HasOne::make('role', [
     'model' => Role::class,
     'model_options' => [

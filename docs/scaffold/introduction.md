@@ -19,7 +19,7 @@ There, you're done, now build something incredible.
 
 For further reading on what is all inside Scaffold please look at our other documentation:
 
-[Outline](/scaffold/outline) <br>
+[Overview](/scaffold/overview) <br>
 [Activity](/scaffold/activity) <br>
 [Api](/scaffold/api) <br>
 [Billing](/scaffold/billing) <br>

@@ -66,6 +66,7 @@ Fields are PHP objects which define types, options, attributes etc for the Form 
 FIELD_OPTIONS
 type: A type string such as text or file
 options: Options for <select> type
+format: Format for DateTime objects
 legend: A label for the legend of horizontal checkboxes
 null_value: False by default, but allows empty values to be placed at the front of selects
 null_label: Text which is placed as the first option in a select with a blank value
@@ -80,15 +81,24 @@ model_options: Model options
 before: Text or HTML you wish to put before an input
 after: Text or HTML you wish to put after the input
 view: A view path to a custom template
+template: A custom template with some basic key value swaps
 attributes: HTML attributes for your input field
-format: Format for DateTime objects
+factory: The type of input faker to use for test generating
+assets: The js, styles, scripts, and stylesheets values
 ```
 
 There are a large collection of Fields available out of the box and a `make:field {name}` command in case you need custom ones. Fields generate a config array which is then processed by the `FieldMaker` and `FieldBuilder` to create forms for easy use.
 
 #### Available Fields
 
+Any fields that include JS should have zero dependencies. Those that require jQuery obviously require jQuery.
+
 ```
+Boostrap/Toggle (includes JS, requires jQuery)
+Boostrap/Select (includes JS, requires jQuery)
+Boostrap/HasOne (includes JS, requires jQuery)
+Boostrap/HasMany (includes JS, requires jQuery)
+Boostrap/Suggest (includes JS, requires jQuery)
 Checkbox
 CheckboxInline
 Color
@@ -96,9 +106,12 @@ Code (includes JS)
 CustomFile
 Date
 DatetimeLocal
+Datepicker (includes JS)
 Decimal
+Dropzone (includes JS)
 Email
 File
+FileWithPreview (includes JS)
 HasMany
 HasOne
 Hidden
@@ -110,10 +123,13 @@ Quill (includes JS)
 Radio
 RadioInline
 Range
+Slug (includes JS)
+Tags (includes JS)
 Telephone
 Text
 TextArea
 Time
+Typeahead (includes JS, requires jQuery)
 Url
 Week
 ```
@@ -122,7 +138,7 @@ Week
 
 Out of the box Form Maker comes with 2 fields which contain field assets. You can add assets to any field, and the Form Maker will collect them and put links to them where you use the blade directive `formMaker`. We suggest below your `app.js` link on your master blade file.
 
-In order to add assets to a field you need to use the following protected methods: `stylesheets`, `scripts`, `js`. The following is an example from the `Quill` field.
+In order to add assets to a field you need to use the following protected methods: `stylesheets`, `scripts`, `styles`, `js`. The following is an example from the `Quill` field.
 
 ```php-inline
 protected static function stylesheets($options)
@@ -136,6 +152,16 @@ protected static function stylesheets($options)
 protected static function scripts($options)
 {
     return ['//cdn.quilljs.com/1.3.6/quill.js'];
+}
+
+// This was added for demo purposes
+protected static function styles($id, $options)
+{
+    return <<<EOT
+#$id {
+    color: #FFF;
+}
+EOT;
 }
 
 protected static function js($id, $options)
@@ -547,6 +573,35 @@ You can create a custom view that the FormMaker will use for your fields. Just h
 ```
 
 The values passed to the view are `label`, `field`, `errors`, `options`. The options is how you can pass more abstract configs through, but in all honesty we dont really see many use cases of that.
+
+### Custom Template for Fields
+
+You can create a custom template that the FormMaker will use for your fields. This way you do not need a view file. Templates have a VERY basic templating component to them.
+
+You have the following variables that are passed to the template:
+
+| Template Key | What it Is |
+---|---
+\{id\} | The field ID
+\{name\} | The label
+\{errors\} | An HTML string of error messages
+\{label\} | The label as an HTML string
+\{field\} | The field as an HTML string
+\{rowClass\} | The CSS class which wraps around the label and field
+\{labelClass\} | The CSS class which is on the label
+\{fieldClass\} | The CSS class which is on the field
+
+This has value when using `horizontal` forms vs `vertical` forms.
+
+```php-inline
+<div class="{rowClass}">
+    <label for="{id}" class="{labelClass}">{name}</label>
+    <div class="{fieldClass}">
+        {field}
+    </div>
+    {errors}
+</div>
+```
 
 ### Relationships
 

@@ -39,14 +39,38 @@ php artisan db:drop {name}
 
 Using Spatie's DbDumper package this command will generate a MySQL dump of your database. This can be useful if you want to create a dummy database for testing which you can anonymize and backup then use the `restore` command to initiate for tests or local development uses.
 
+With backup you can also specify the tables you want to backup.
+
 ```
-php artisan db:backup
+php artisan db:backup {--tables=}
 ```
 
 ## Restore
 
 The restore command simply looks for the latest backup file and restores that instance of the MySQL dump. This is most effective for local setup of projects and testing etc.
 
+If you have a specific backup you want to restore you can run it with the `--backup` option otherwise it will default to the `db-backup.sql` file.
+
 ```
-php artisan db:restore
+php artisan db:restore {--backup=}
+```
+
+## Upload
+
+You can also choose to upload a backup file to a filesystem of your choosing. You simply create a disk in your Laravel config called `backup` and then run the following command:
+
+The filename is what you wish to call the backup on the backup disk, the package will append `.sql` to the filename.
+
+```
+php artisan db:upload {filename} {backup}
+```
+
+## Download
+
+Similar to the upload you may wish to download a database dump locally so you can restore it.
+
+You can specify the filename you want for the downloaded file and set the file from your uploads disk.
+
+```
+php artisan db:download {filename} {uploaded-backup-filename}
 ```

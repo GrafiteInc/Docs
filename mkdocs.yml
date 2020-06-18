@@ -88,8 +88,9 @@ nav:
     - Upgrade Guide: scaffold/upgrade.md
   - Utilities:
     - Overview: utilities/index.md
-    - Form Maker: utilities/form_maker.md
+    - Charts: utilities/charts.md
     - Database: utilities/database.md
+    - Form Maker: utilities/form_maker.md
     - Helpers: utilities/helpers.md
   - Archived:
     - Overview: archived/index.md

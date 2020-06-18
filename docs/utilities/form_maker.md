@@ -256,6 +256,20 @@ public function setSections()
 }
 ```
 
+## HTML Snippets
+
+Within the fields section of the Form Object you can also place some HTML snippets. These can help with spacing and UI layouts. The Snippets included in FormMaker are:
+
+```
+OpenDiv
+CloseDiv
+Div
+Heading
+Hr
+```
+
+All of these snippets can have the `class` attribute set. `Div` and `Heading` can also have `content` set in them.
+
 ## Form
 
 The Form class lets us generate simple forms with minimal code.

@@ -545,6 +545,10 @@ This will generate a form with these fields only. You can also set the `orientat
 
 `$buttonClasses` enables you to customize the button class values for submit, cancel, and delete which can also be done in the config as form default
 
+`$confirmMessage` lets you set the confirm message for the delete button
+
+`$confirmMethod` sets the method name for the `onclick` event when clicking on the delete button
+
 With the `delete()` form you can also add the confirmation method like so:
 
 ```php-inline
@@ -638,3 +642,44 @@ HasOne::make('role', [
 ```
 
 You can also customize how you access the method and with what parameters. By default it will try to collect the options by getting `Role::all()` however you can limit that with something like `Role::custom(params)`.
+
+### Index and Search
+
+With a `ModelForm` you can also utilize the index and search methods. This lets you render full index tables of models and search forms for those models.
+There are also some special properties you can set on your `ModelForm` in order to optimize the index and allow some fields to be sortable.
+
+`$with` is used as a portion of the model query run in index listing.
+
+`$paginate` allows you to set a number for how many items to load in the index.
+
+```php-inline
+app(UserForm::class)->index()
+```
+
+In case you wish to output the index to an API call.
+
+```php-inline
+app(UserForm::class)->index()->toJson()
+```
+
+Renders a search form for the model index
+
+```php-inline
+app(UserForm::class)->index()->search('route.for.search', 'placeholder', 'Button Text', 'form-method');
+```
+
+### Field Options
+
+Each field by default will be listed in the index. You can customize this by setting the `visible` option to `false`.
+
+If you wish to make a field sortable (asc|desc) then you can set the `sortable` option to `true`.
+
+#### Custom Query on Index
+
+You can also pass a query into the `index` method if you wish to set some details.
+
+```php-inline
+$query = User::whereIn('in', [1, 2, 3]);
+
+app(UserForm::class)->index($query);
+```

@@ -50,7 +50,28 @@ Form Maker only has one blade directive and that is for handling any assets you 
 @formMaker
 ```
 
-Just place that below any of your JavaScript file references and you can easily load the forms field assets when the For is being rendered on screen.
+Just place that below any of your JavaScript file references and you can easily load the forms field assets when the Form is being rendered on screen.
+
+### Blade Components
+
+If you like to keep your blade files looking a little nicer you can also use Blade Components. This lets you reduce the use of curly braces everywhere.
+
+```html
+<x-fm-action
+    route="delete.user"
+    method="delete"
+></x-fm-action>
+```
+
+```html
+<x-fm :content="$form"></x-fm>
+```
+
+```html
+<x-fm-search
+    route="search"
+></x-fm-search>
+```
 
 ## Helpers
 
@@ -100,6 +121,7 @@ Boostrap/HasOne (includes JS, requires jQuery)
 Boostrap/HasMany (includes JS, requires jQuery)
 Boostrap/Suggest (includes JS, requires jQuery)
 Checkbox
+Attachments (includes JS, requires jQuery)
 CheckboxInline
 Color
 Code (includes JS)
@@ -177,6 +199,14 @@ protected static function js($id, $options)
     EOT;
 }
 ```
+
+### Minification
+
+By default for any form assets all JS and CSS is minified using [https://github.com/matthiasmullie/minify](https://github.com/matthiasmullie/minify)
+
+### Default JS Validation
+
+In general based on form submissions - we return a nice looking form with the error labels in place. The annoying part would be writing JavaScript validation per input to clean up the UI from the form return. If you set ```php-inline public $withJsValidation = true; ``` then you'll get a handy vanilla JS injection which removes the invalid classes on keyup or focus out.
 
 ## Sections
 

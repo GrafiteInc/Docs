@@ -60,6 +60,7 @@ If you like to keep your blade files looking a little nicer you can also use Bla
 <x-fm-action
     route="delete.user"
     method="delete"
+    payload="$user"
 ></x-fm-action>
 ```
 
@@ -308,7 +309,13 @@ The Form class lets us generate simple forms with minimal code.
 form()->action('method', 'route', 'button text', $html_attributes);
 ```
 
-Generates a form using the method and route with a button, for easier addition of delete buttons and more,
+Generates a form using the method and route with a button, for easier addition of delete buttons and more.
+
+You can also provide a payload to action forms similar to the confirm below:
+
+```php-inline
+form()->payload(['user' => $user->id])->action(...);
+```
 
 ```php-inline
 form()->confirm('Are you sure?')->action(...);

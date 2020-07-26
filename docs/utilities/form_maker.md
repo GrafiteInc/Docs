@@ -203,7 +203,7 @@ protected static function js($id, $options)
 
 ### Minification
 
-By default for any form assets all JS and CSS is minified using [https://github.com/matthiasmullie/minify](https://github.com/matthiasmullie/minify)
+By default for any form assets all JS and CSS is minified in production using [https://github.com/matthiasmullie/minify](https://github.com/matthiasmullie/minify). We keep in unminified locally and in testing for easier debugging.
 
 ### Default JS Validation
 

@@ -157,6 +157,119 @@ Url
 Week
 ```
 
+#### Special Field Options
+
+Some fields have extra options which pertain to their configs. Below are more custom options you can apply to these special fields.
+
+##### Boostrap/Toggle
+
+See [https://gitbrent.github.io/bootstrap4-toggle/](https://gitbrent.github.io/bootstrap4-toggle/) for more options.
+
+```json
+theme: "light|dark"
+on: "On"
+off: "Off"
+size: "sm"
+```
+
+##### Boostrap/Suggest
+```json
+btn: "btn-primary"
+```
+
+##### Boostrap/Select
+```json
+btn: "btn-primary"
+```
+
+##### Boostrap/HasOne
+```json
+btn: "btn-primary"
+```
+
+##### Boostrap/HasMany
+```json
+btn: "btn-primary"
+```
+
+##### Code
+
+See [https://codemirror.net/](https://codemirror.net/) for more options.
+
+```json
+mode: "htmlmixed"
+theme: "default"
+```
+
+##### Datepicker
+
+See [https://github.com/qodesmith/datepicker#readme](https://github.com/qodesmith/datepicker#readme) for more options
+
+```json
+theme: "light"
+background-color: "#FFF"
+color: "#FFF"
+number-color: "#111"
+highlight: "var(--primary, "#EEE")"
+header: "var(--primary, "#EEE")"
+start-day: 1
+format: "YYYY-MM-DD"
+```
+
+##### Dropzone
+
+```json
+theme: "light"
+queue-complete: "function () { window.location.reload() }"
+upload-multiple: true
+route: ""
+```
+
+##### Filepond
+
+```json
+file_size: "25MB"
+process_url: null
+submit-button: "button[type="submit"]"
+upload_result_field: null
+```
+
+##### FileWithPreview
+
+```json
+preview_identifier: "" // class or ID for an avatar img or div
+preview_as_background_image: false
+```
+
+##### Quill
+
+```json
+theme: "light"
+quill_theme: "snow"
+toolbars: [
+    "basic",
+    "extra",
+    "lists",
+    "super_sub",
+    "indents",
+    "headers",
+    "colors",
+]
+```
+
+##### Tags
+
+```json
+default-border: "#EEE"
+focus-border: "#EEE"
+```
+
+##### Typeahead
+
+```json
+matches: []
+```
+
 #### Field Assets
 
 Out of the box Form Maker comes with 2 fields which contain field assets. You can add assets to any field, and the Form Maker will collect them and put links to them where you use the blade directive `formMaker`. We suggest below your `app.js` link on your master blade file.

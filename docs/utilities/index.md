@@ -4,5 +4,5 @@ Most of our newer packages fall under a utilities category since they're intende
 
 [Charts](charts.md)<br>
 [Database](database.md)<br>
-[Form Maker](form_maker.md)<br>
+[Forms](forms.md)<br>
 [Helpers](helpers.md)<br>

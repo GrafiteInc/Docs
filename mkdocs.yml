@@ -90,7 +90,7 @@ nav:
     - Overview: utilities/index.md
     - Charts: utilities/charts.md
     - Database: utilities/database.md
-    - Form Maker: utilities/form_maker.md
+    - Forms: utilities/forms.md
     - Helpers: utilities/helpers.md
   - Archived:
     - Overview: archived/index.md

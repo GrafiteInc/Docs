@@ -1,10 +1,10 @@
-# Form Maker
+# Forms
 
-Our Form Maker package is designed to give developers to freedom to build forms via classes and set the fields in those classes comfortably. You can easily pass a form to a view and it will render the whole form, reducing your need to type out divs, labels, inputs and more.
+Our Forms package is designed to give developers to freedom to build forms via classes and set the fields in those classes comfortably. You can easily pass a form to a view and it will render the whole form, reducing your need to type out divs, labels, inputs and more.
 
-[Source Code](https://github.com/grafiteinc/formMaker)
+[Source Code](https://github.com/grafiteinc/forms)
 
-!!! warning "Form Maker by default is set to Bootstrap's classes, but you can change these in the config."
+!!! warning "Forms by default is set to Bootstrap's classes, but you can change these in the config."
 
 ## Artisan Commands
 
@@ -47,7 +47,7 @@ $connection = 'alternate';
 Form Maker only has one blade directive and that is for handling any assets you may add to a field. In the case of the `Quill` field we load the CDN assets (javascript and css), and we inject a snippet of JavaScript. These assets need to be rendered in your view. Ideally this is done close to the closing body tag of your main template.
 
 ```php-inline
-@formMaker
+@forms
 ```
 
 Just place that below any of your JavaScript file references and you can easily load the forms field assets when the Form is being rendered on screen.
@@ -57,21 +57,21 @@ Just place that below any of your JavaScript file references and you can easily 
 If you like to keep your blade files looking a little nicer you can also use Blade Components. This lets you reduce the use of curly braces everywhere.
 
 ```html
-<x-fm-action
+<x-f-action
     route="delete.user"
     method="delete"
     payload="$user"
-></x-fm-action>
+></x-f-action>
 ```
 
 ```html
-<x-fm :content="$form"></x-fm>
+<x-f :content="$form"></x-f>
 ```
 
 ```html
-<x-fm-search
+<x-f-search
     route="search"
-></x-fm-search>
+></x-f-search>
 ```
 
 ## Helpers
@@ -254,7 +254,29 @@ toolbars: [
     "indents",
     "headers",
     "colors",
+    "image",
+    "video"
 ]
+upload_route: "upload.image"
+```
+
+*Special*
+
+If you want to use images inside Quill you need to have a route which can handle the image uploads. Storing images as data-urls (Quill default method) is never wise. The following is an example of a Controller invoke method which can handle the file uploads.
+
+```inline-php
+$validatedData = $request->validate([
+    'file' => 'image|required',
+]);
+
+$path = collect($validatedData)->first()->store('public/uploads');
+
+return response()->json([
+    'data' => [
+        'success' => true,
+        'path' => str_replace('public', 'storage', url($path)),
+    ],
+]);
 ```
 
 ##### Tags
@@ -272,7 +294,7 @@ matches: []
 
 #### Field Assets
 
-Out of the box Form Maker comes with 2 fields which contain field assets. You can add assets to any field, and the Form Maker will collect them and put links to them where you use the blade directive `formMaker`. We suggest below your `app.js` link on your master blade file.
+Out of the box Forms comes with a few fields which contain field assets. You can add assets to any field, and the Forms package will collect them and put links to them where you use the blade directive `forms`. We suggest below your `app.js` link on your master blade file.
 
 In order to add assets to a field you need to use the following protected methods: `stylesheets`, `scripts`, `styles`, `js`. The following is an example from the `Quill` field.
 
@@ -402,7 +424,7 @@ public function setSections()
 
 ## HTML Snippets
 
-Within the fields section of the Form Object you can also place some HTML snippets. These can help with spacing and UI layouts. The Snippets included in FormMaker are:
+Within the fields section of the Form Object you can also place some HTML snippets. These can help with spacing and UI layouts. The Snippets included in Forms are:
 
 ```
 OpenDiv
@@ -476,8 +498,8 @@ There is also support for an `submitMethod` attribute on all forms. This custom 
 
 namespace App\Http\Forms;
 
-use Grafite\FormMaker\Fields\Password;
-use Grafite\FormMaker\Forms\BaseForm;
+use Grafite\Forms\Fields\Password;
+use Grafite\Forms\Forms\BaseForm;
 
 class UserSecurityForm extends BaseForm
 {
@@ -629,11 +651,11 @@ namespace App\Http\Forms;
 
 use App\Models\Role;
 use App\Models\User;
-use Grafite\FormMaker\Fields\File;
-use Grafite\FormMaker\Fields\Text;
-use Grafite\FormMaker\Fields\Email;
-use Grafite\FormMaker\Fields\Checkbox;
-use Grafite\FormMaker\Forms\ModelForm;
+use Grafite\Forms\Fields\File;
+use Grafite\Forms\Fields\Text;
+use Grafite\Forms\Fields\Email;
+use Grafite\Forms\Fields\Checkbox;
+use Grafite\Forms\Forms\ModelForm;
 
 class UserForm extends ModelForm
 {
@@ -724,7 +746,7 @@ $this->hasInstance()
 
 ### Custom View for Fields
 
-You can create a custom view that the FormMaker will use for your fields. Just have you view file follow this pattern:
+You can create a custom view that the Forms will use for your fields. Just have you view file follow this pattern:
 
 ```php-inline
 <div class="row">
@@ -744,7 +766,7 @@ The values passed to the view are `label`, `field`, `errors`, `options`. The opt
 
 ### Custom Template for Fields
 
-You can create a custom template that the FormMaker will use for your fields. This way you do not need a view file. Templates have a VERY basic templating component to them.
+You can create a custom template that the Forms will use for your fields. This way you do not need a view file. Templates have a VERY basic templating component to them.
 
 You have the following variables that are passed to the template:
 
@@ -773,7 +795,7 @@ This has value when using `horizontal` forms vs `vertical` forms.
 
 ### Relationships
 
-FormMaker also has Fields called `HasOne` and `HasMany`. These enable you to select one or multiple from a relationship binding in your model.
+Forms also has Fields called `HasOne` and `HasMany`. These enable you to select one or multiple from a relationship binding in your model.
 
 For example you may have a `User` who has a `role` which is `belongsToMany`.
 

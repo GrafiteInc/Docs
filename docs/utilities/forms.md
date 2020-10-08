@@ -577,6 +577,19 @@ form()->model($model, $options);
 
 Open a form based on a model
 
+### Form Types
+
+There are 3 main form types available:
+
+##### Form
+This is mostly used as the action form for simple action based forms with single buttons etc.
+
+##### BaseForm
+The full control of rendered fields with script injection options. Generall not bound to a model.
+
+##### ModelForm
+The full rendered fields and script injections with a model bound to the actions.
+
 ## Config
 
 In general all classes are defined in the config, which means you can avoid Boostrap if you want to. You can also set the form class directly on the form itself.
@@ -630,7 +643,18 @@ Any classes set on the form, or field itself will override the default configs. 
 ]
 ```
 
----
+### Form Scripts
+
+Similar to Field assets you can inject JavaScript directly into your form to contain logic etc. This lets you avoid having random scripts in your JavaScript assets for random parts of your application. To add scripts simply create a scripts method and return what you wish.
+
+```php-inline
+public function scripts()
+{
+    return <<<EOT
+        console.log("hello world");
+    EOT;
+}
+```
 
 ## ModelForm
 
@@ -855,3 +879,78 @@ $query = User::whereIn('in', [1, 2, 3]);
 
 app(UserForm::class)->index($query);
 ```
+
+## Livewire
+
+!!! info "You have to first ensure your app is set up with all basic Livewire setup."
+
+You can use the forms inside Livewire and handle a varity of options. First you need to set that the Form is using Livewire using the following property.
+
+```php-inline
+public $withLivewire = true;
+```
+
+If you wish to have the changes propogate on keydown you can enable that as well with the following:
+
+```php-inline
+public $livewireOnKeydown = true;
+```
+
+Within your Livewire component you have a handful of options. You need to set the `$data` property in the `mount` method, then create a `submit` method and lastly set the form within the render method. Below is an example:
+
+```php-inline
+<?php
+
+namespace App\Http\Livewire;
+
+use Livewire\Component;
+use App\Http\Forms\UserForm;
+
+class UserSettings extends Component
+{
+    public $data;
+
+    public function mount()
+    {
+        $user = request()->user();
+
+        $this->data['name'] = $user->name;
+        $this->data['email'] = $user->email;
+        $this->data['billing_email'] = $user->billing_email;
+        $this->data['state'] = $user->state;
+        $this->data['country'] = $user->country;
+    }
+
+    protected $rules = [
+        'data.billing_email' => 'required|email',
+    ];
+
+    public function submit()
+    {
+        $this->validate();
+
+        request()->user()->update($this->data);
+    }
+
+    public function render()
+    {
+        $user = request()->user();
+
+        $form = app(UserForm::class)
+            ->setErrorBag($this->getErrorBag())
+            ->edit($user);
+
+        return view('livewire.user-settings')->withForm($form);
+    }
+}
+```
+
+#### Render Method
+
+Within the render method you will need to place your Form code. Specifically you will need to pass in the `ErrorBag` from the component in order to correctly render field errors. This lets you handle real time error reporting on form entry quite easily.
+
+```php-inline
+app(UserForm::class)->setErrorBag($this->getErrorBag())->create()
+```
+
+The above example is in our Scaffold project. It provides an example of using the Forms inside a Livewire component.

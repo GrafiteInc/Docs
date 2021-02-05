@@ -122,7 +122,7 @@ Boostrap/HasOne (includes JS, requires jQuery)
 Boostrap/HasMany (includes JS, requires jQuery)
 Boostrap/Suggest (includes JS, requires jQuery)
 Checkbox
-Attachments (includes JS, requires jQuery)
+Attachments (includes JS)
 CheckboxInline
 Color
 Code (includes JS)
@@ -134,6 +134,7 @@ Decimal
 Dropzone (includes JS)
 Email
 File
+FilePond (includes JS, requires jQuery)
 FileWithPreview (includes JS)
 HasMany
 HasOne
@@ -148,6 +149,7 @@ RadioInline
 Range
 Slug (includes JS)
 Tags (includes JS)
+Toggled
 Telephone
 Text
 TextArea
@@ -284,6 +286,12 @@ return response()->json([
 ```json
 default-border: "#EEE"
 focus-border: "#EEE"
+```
+
+##### Toggled
+
+```json
+color: "blue"
 ```
 
 ##### Typeahead
@@ -431,10 +439,12 @@ OpenDiv
 CloseDiv
 Div
 Heading
-Hr
+HrTag
+Span
+Button
 ```
 
-All of these snippets can have the `class` attribute set. `Div` and `Heading` can also have `content` set in them.
+All of these snippets can have nearly any attribute set. `Div`, `Heading`, `Button`, `Span` can also have `content` set in them, and in most cases require the `content` value be set for them.
 
 ## Form
 
@@ -589,6 +599,9 @@ The full control of rendered fields with script injection options. Generall not 
 
 ##### ModelForm
 The full rendered fields and script injections with a model bound to the actions.
+
+##### ModalForm
+The full rendered fields and script injections inside a Bootstrap based modal. They do require a `triggerContent` and `triggerClass` which are the content and class for the button which opens the Modal.
 
 ##### LivewireForm
 Livewire form is more basic, ignoring buttons, allowing for `public $onKeydown` as well as the ease of passing the Component `$data` into the form via the `make()` method. If you wish to use the whole form notion, then set the `$method` to whatever you wish, by default its set to *submit*.
@@ -882,6 +895,18 @@ $query = User::whereIn('in', [1, 2, 3]);
 
 app(UserForm::class)->index($query);
 ```
+
+## ModalForm
+
+A modal form is a form inside a modal popup. It requires a Trigger (a button) to have the modal popped open.
+
+This form type contains all the similar attributes to `BaseForm` and `ModelForm`. It also has the trigger attributes.
+
+`$triggerContent` Content that goes inside the modal trigger button.
+
+`$triggerClass` The classes for the button that triggers the modal.
+
+These attributes can also be set for `ModelForm` classes and utilize the `asModal()` method. This can also be used for delete buttons with `ModelForm` objects. With the asModal you're able to allow a simple Confirmation modal.
 
 ## Livewire
 

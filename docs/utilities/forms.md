@@ -143,6 +143,7 @@ Image
 Month
 Number
 Password
+Editor (includes JS)
 Quill (includes JS)
 Radio
 RadioInline
@@ -243,6 +244,40 @@ preview_identifier: "" // class or ID for an avatar img or div
 preview_as_background_image: false
 ```
 
+##### Editor
+
+Uses the latest EditorJS as its WYSIWYG editor.
+
+```json
+theme: "light"
+upload_route: "upload.image"
+```
+
+*Special*
+
+If you want to use images inside EditorJS you need to have a route which can handle the image uploads. The following is an example of a Controller invoke method which can handle the file uploads, below is the Quill example using the same controller.
+
+```inline-php
+$validatedData = $request->validate([
+    'file' => 'image|required',
+]);
+
+$path = collect($validatedData)->first()->store('public/uploads');
+
+return response()->json([
+    'success' => true,
+    'file' => [
+        'url' => Storage::url($path),
+    ],
+]);
+```
+
+Editor also has a parser available at `Grafite\Forms\Parsers\Editor`. This lets you do something like:
+
+```inline-php
+app(Grafite\Forms\Parsers\Editor::class)->parse(auth()->user()->bio)->render();
+```
+
 ##### Quill
 
 ```json
@@ -274,9 +309,9 @@ $validatedData = $request->validate([
 $path = collect($validatedData)->first()->store('public/uploads');
 
 return response()->json([
-    'data' => [
-        'success' => true,
-        'path' => str_replace('public', 'storage', url($path)),
+    'success' => true,
+    'file' => [
+        'url' => Storage::url($path),
     ],
 ]);
 ```
@@ -1072,3 +1107,10 @@ If you have some fields which have JavaScript running elements of them you can e
 ```
 
 This tells Livewire to NOT perform the DOM diff on the child Form elements. This means your form doesn't try to reload its components etc.
+
+## Parsers
+
+Some fields require parsers since the data they store isn't very consumable by default. `Editor` is a great example of this. The `Editor` field stores a JSON object of blocks of HTML. This can then use the `Editor` Parser to convert it to proper HTML for end user consumption.
+
+Parsers should have `parse`, `handler`, and `render` methods generally to handle accepting data, processing it and rendering it as HTML or other content.
+

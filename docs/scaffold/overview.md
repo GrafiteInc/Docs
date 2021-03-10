@@ -72,21 +72,11 @@ The pages controller is intended for general app pages like terms of service and
 
 __^^TeamMembersController^^__
 
-Team members controller handles the basic CRUD pages of a team member including: show, edit, update. Any other actions relevant to team members is handled by the `HasMembers` trait.
+Team members controller handles the basic CRUD pages of a team member including: show, edit, update.
 
 __^^WebhookController^^__
 
 This is an extention of the Cashier webhook controller setting the redirect of a successful payment.
-
-<hr>
-
-#### Concerns
-
-The concerns directory contains any trait files.
-
-__^^HasMembers^^__
-
-This trait handles all method relavant to being or having members on a model. By default this is only present on Teams. It contains methods handling: leaving a team, removing a member, and inviting a member.
 
 <hr>
 

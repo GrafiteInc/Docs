@@ -1,12 +1,8 @@
 # Invites
 
-Scaffold contains a rather simple invite system. Out of the box user's can invite people to Teams and maintain a membership on a team. However, this same invite code can be set up with other models, such as Documents or Pages. You would need to utilize the `HasMembers` and `Invitable` traits and write some custom parts but the core is in place.
+Scaffold contains a rather simple invite system. Out of the box user's can invite people to Teams and maintain a membership on a team. However, this same invite code can be set up with other models, such as Documents or Pages. You would need to utilize the `Invitable` trait and write some custom parts (leaving, removing etc) but the core is in place.
 
 ## Traits
-
-__^^HasMembers^^__
-
-This handles the acts of inviting, leaving and removing a member from the model. This is added to the controller of the model you wish to invite users to.
 
 __^^Invitable^^__
 

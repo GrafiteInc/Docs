@@ -481,6 +481,14 @@ Button
 
 All of these snippets can have nearly any attribute set. `Div`, `Heading`, `Button`, `Span` can also have `content` set in them, and in most cases require the `content` value be set for them.
 
+## Card Wrapper
+
+Sometimes you may want to place a form inside a card component. If you do, you may wish to set the `$isCardForm` property to true. This will place the form buttons in the card footer and wrap the form in a `.card-body` div. This lets you control the use of card-headers while giving your form a clean component like style.
+
+## Disable on Submit
+
+When a user clicks the submit button we can end up having issues if they click it repeatedly. Setting the `$disableOnSubmit` property to true, will in turn disable the submit button onclick and insert a fontawesome spinning icon.
+
 ## Form
 
 The Form class lets us generate simple forms with minimal code.
@@ -529,14 +537,14 @@ window.confirmation = (_event, _message) => {
     });
 
     $('#appModalConfirmBtn').click(() => {
-        $(_event.target.parentNode)[0].submit();
+        _event.target.form.submit();
     });
 
     return false;
 }
 ```
 
-There is also support for an `submitMethod` attribute on all forms. This custom submit allows you to override the standard submit and perform actions against your form. This can be useful if you want to do an ajax submission of your form.
+There is also support for a `submitMethod` attribute on all forms. This custom submit allows you to override the standard submit and perform actions against your form. This can be useful if you want to do an ajax submission of your form.
 
 ```php
 <?php
@@ -586,27 +594,26 @@ class UserSecurityForm extends BaseForm
 window.ajax = (_event) => {
     _event.preventDefault();
 
-    let _form = _event.target.parentNode.parentNode.parentNode;
+    let _form = _event.target.form;
     let _method = _form.method.toLowerCase();
-    let _payloadArray = $(_form).serializeArray();
-    let _payload = {};
+    let _data = new FormData(_form);
 
-    $.map(_payloadArray, function(n, i){
-        _payload[n['name']] = n['value'];
+    window.axios[_method](_form.action, _data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+    })
+    .then((response) => {
+        window.notify.success(response.data.message);
+    })
+    .catch((error) => {
+        window.notify.warning(error.response.data.message);
+
+        for (var key in error.response.data.errors) {
+            document.querySelector('input[name="'+key+'"]').classList.add('border-danger');
+            window.notify.error(error.response.data.errors[key][0]);
+        }
     });
-
-    window.axios[_method](_form.action, _payload)
-        .then((response) => {
-            window.Snotify.success(response.data.message);
-        })
-        .catch((error) => {
-            window.Snotify.warning(error.response.data.message);
-
-            for (var key in error.response.data.errors) {
-                $('input[name="'+key+'"]').addClass('border-danger');
-                window.Snotify.error(error.response.data.errors[key][0]);
-            }
-        });
 }
 ```
 

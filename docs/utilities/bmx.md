@@ -5,7 +5,7 @@ A great question you may find yourself asking is why do this at all? There is ta
 
 [Source Code](https://github.com/grafiteinc/bmx)
 
-!!! warning "The charts package only works with Bootstrap 4.6+"
+!!! warning "The Bootstrap Magic Extras package only works with Bootstrap 4.6+"
 
 ## Setup
 

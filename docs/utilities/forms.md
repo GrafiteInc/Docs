@@ -745,6 +745,8 @@ class UserForm extends ModelForm
 
     public $routePrefix = 'user';
 
+    public $routeParameters = ['id'];
+
     public $buttons = [
         'submit' => 'Save',
     ];
@@ -792,6 +794,8 @@ public function fields()
 This will generate a form with these fields only. You can also set the `orientation` if you wish to use labels on the left side instead of above and `columns` if you wish to generate a form in which the fields are split into more columns.
 
 `$routePrefix` is required as it defines the routes using route names which match the standards route naming of Laravel.
+
+`$routeParameters` is required if you need to pass more than the default ID parameter for a form. This is also needed if you wish to use `uuid` etc.
 
 `$hasFiles` enables the file submission of the form.
 

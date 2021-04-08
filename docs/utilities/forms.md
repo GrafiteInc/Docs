@@ -387,6 +387,18 @@ By default for any form assets all JS and CSS is minified in production using [h
 
 In general based on form submissions - we return a nice looking form with the error labels in place. The annoying part would be writing JavaScript validation per input to clean up the UI from the form return. If you set ```php-inline public $withJsValidation = true; ``` then you'll get a handy vanilla JS injection which removes the invalid classes on keyup or focus out.
 
+## Single Field Usage
+
+If you want to use the Forms builder for just a single field you can quite easily with the `form` helper.
+
+```php-inline
+{!! form()->makeField(\Grafite\Forms\Fields\Text::class, 'name', [
+    'id' => 'nameField',
+]) !!}
+```
+
+!!! info "This is extra useful when you want to use JS driven form fields"
+
 ## Sections
 
 The various Form Objects allow you to set Sections. For example, you may have a `BlogForm` and you may want one row to have three columns while the next row has two, this can be achieved with the `setSections` method.
@@ -545,6 +557,9 @@ window.confirmation = (_event, _message) => {
 ```
 
 There is also support for a `submitMethod` attribute on all forms. This custom submit allows you to override the standard submit and perform actions against your form. This can be useful if you want to do an ajax submission of your form.
+
+!!! info Special Case
+    There is a also a `submitMethods` array property that can be set for any `ModelForm`. This lets you set update or create forms to ajax driven or standard.
 
 ```php
 <?php

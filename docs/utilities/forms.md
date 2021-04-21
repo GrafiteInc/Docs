@@ -18,6 +18,13 @@ Generate a generic form with a specific name using this command. It will add the
 artisan make:base-form {name}
 ```
 
+Other form make commands are as follows:
+```shell
+artisan make:modal-form {name}
+artisan make:livewire-form {name}
+artisan make:wizard-form {name}
+```
+
 The following command will generate a feature test which hits the endpoints of the form.
 
 ```shell
@@ -48,6 +55,13 @@ Form Maker only has one blade directive and that is for handling any assets you 
 
 ```php-inline
 @forms
+```
+
+Or, if you wish to split the resources (which is smarter) you can use:
+
+```php-inline
+@formStyles
+@formScripts
 ```
 
 Just place that below any of your JavaScript file references and you can easily load the forms field assets when the Form is being rendered on screen.
@@ -663,6 +677,9 @@ The full rendered fields and script injections inside a Bootstrap based modal. T
 ##### LivewireForm
 Livewire form is more basic, ignoring buttons, allowing for `public $onKeydown` as well as the ease of passing the Component `$data` into the form via the `make()` method. If you wish to use the whole form notion, then set the `$method` to whatever you wish, by default its set to *submit*.
 
+##### WizardForm
+The wizard form enables developers to create a wizard like experience for their form submission. It collects the specified fields and sets them into steps defined in the Form class. The Next and Previous buttons can be modified and they run basic HTML5 validation as you move forward.
+
 ## Config
 
 In general all classes are defined in the config, which means you can avoid Boostrap if you want to. You can also set the form class directly on the form itself.
@@ -968,6 +985,12 @@ This form type contains all the similar attributes to `BaseForm` and `ModelForm`
 `$triggerClass` The classes for the button that triggers the modal.
 
 These attributes can also be set for `ModelForm` classes and utilize the `asModal()` method. This can also be used for delete buttons with `ModelForm` objects. With the asModal you're able to allow a simple Confirmation modal.
+
+## WizardForm
+
+A form as a set of steps with next and previous buttons.
+
+The standard properties such as `route`, `method` are to be set as well as the optional `progressBarColor`. The fields are defined in the standard way and similar to the `setSections` method you can need to set the steps in the `steps` method.
 
 ## Livewire
 

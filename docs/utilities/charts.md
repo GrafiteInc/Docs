@@ -100,3 +100,15 @@ There are two main methods available:
 
 The `refresh` method is useful for reloading data from an API endpoint. It uses the `fetch` method.
 The `create` nethod is run or you on page load.
+
+## JavaScript Events available
+
+Based on the ChartJS click events, there is a CustomEvent emitted to the document to handle these clicks. Simply listen for `grafite-charts-click` and you'll get the items clicked as well as the chart object. Which means you could load events similar to below:
+
+```
+document.addEventListener('grafite-charts-click', function (event) {
+    event.detail.items[0] // item clicked on, unless multiple are on the same point
+    event.detail.chart // chart object
+    event.detail.chart.data.labels[event.detail.items[0].index] // is how to access the label that the item has
+});
+```

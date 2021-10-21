@@ -81,6 +81,7 @@ nav:
     - Overview: scaffold/overview.md
     - Activity: scaffold/activity.md
     - API: scaffold/api.md
+    - PWA: scaffold/pwa.md
     - Billing: scaffold/billing.md
     - Invites: scaffold/invites.md
     - Notifications: scaffold/notifications.md

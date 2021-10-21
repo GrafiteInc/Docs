@@ -8,13 +8,14 @@ Grafite Scaffold provides an elegant solution for starting an application by hav
 
 Please consult documentation related to these packages if you wish to work with their functionality.
 
-[consoletvs/charts](https://github.com/ConsoleTVs/Charts){:target="_blank"}<br>
+[grafite/charts](https://github.com/GrafiteInc/Charts){:target="_blank"}<br>
 [grafite/database](https://github.com/GrafiteInc/Database){:target="_blank"}<br>
-[grafite/formmaker](https://github.com/GrafiteInc/FormMaker){:target="_blank"}<br>
+[grafite/forms](https://github.com/GrafiteInc/Forms){:target="_blank"}<br>
+[fruitcake/laravel-cors](https://github.com/fruitcake/laravel-cors){:target="_blank"}<br>
 [intervention/image](https://github.com/Intervention/image){:target="_blank"}<br>
 [laravel/cashier](https://github.com/laravel/cashier){:target="_blank"}<br>
 [laravel/helpers](https://github.com/laravel/helpers){:target="_blank"}<br>
-[laravel/ui](https://github.com/laravel/ui){:target="_blank"}<br>
+[laravelcollective/auth](https://github.com/laravelcollective/auth){:target="_blank"}<br>
 [lasserafn/php-initial-avatar-generator](https://github.com/lasserafn/php-initial-avatar-generator){:target="_blank"}<br>
 [tightenco/ziggy](https://github.com/tightenco/ziggy){:target="_blank"}<br>
 

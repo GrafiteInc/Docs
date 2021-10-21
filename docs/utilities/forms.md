@@ -123,55 +123,134 @@ factory: The type of input faker to use for test generating
 assets: The js, styles, scripts, and stylesheets values
 ```
 
-There are a large collection of Fields available out of the box and a `make:field {name}` command in case you need custom ones. Fields generate a config array which is then processed by the `FieldMaker` and `FieldBuilder` to create forms for easy use.
+There are a large collection of Fields available out of the box and a `make:field {name}` command in case you need custom ones. Fields generate a config array which is then processed by the `FieldMaker`, `AttributeBuilder` and `FieldBuilder` to create forms for easy use.
 
 #### Available Fields
 
 Any fields that include JS should have zero dependencies. Those that require jQuery obviously require jQuery.
 
 ```
-Boostrap/Toggle (includes JS, requires jQuery)
-Boostrap/Select (includes JS, requires jQuery)
-Boostrap/HasOne (includes JS, requires jQuery)
+Boostrap/Country (includes JS, requires jQuery)
 Boostrap/HasMany (includes JS, requires jQuery)
+Boostrap/HasOne (includes JS, requires jQuery)
+Boostrap/Select (includes JS, requires jQuery)
 Boostrap/Suggest (includes JS, requires jQuery)
+Boostrap/Timezone (includes JS, requires jQuery)
+Boostrap/Toggle (includes JS, requires jQuery)
+Attributes
 Checkbox
-Attachments (includes JS)
 CheckboxInline
-Color
 Code (includes JS)
+Color
 CustomFile
+Datalist
 Date
+Datepicker
 DatetimeLocal
-Datepicker (includes JS)
 Decimal
 Dropzone (includes JS)
+Editor (includes JS)
 Email
 File
-FilePond (includes JS, requires jQuery)
-FileWithPreview (includes JS)
+FilePond (includes JS)
+FileWithPreview
 HasMany
 HasOne
 Hidden
 Image
 Month
+Name
 Number
 Password
-Editor (includes JS)
+PasswordWithReveal
 Quill (includes JS)
 Radio
 RadioInline
 Range
+Search
+Select
 Slug (includes JS)
 Tags (includes JS)
-Toggled
 Telephone
 Text
 TextArea
 Time
+Toggled (includes JS)
 Typeahead (includes JS, requires jQuery)
 Url
 Week
+```
+
+### Field Methods Available
+
+In general you can set field options as an array in the `make` method of the Field.
+
+```inline-php
+Text::make('name', [
+    'required' => true,
+]);
+```
+
+However you can also use any of the methods below as in a chaining style in order to set the Field configuration details.
+
+##### Example:
+
+```inline-php
+Text::make('name')->required();
+```
+
+##### Methods
+
+```inline-php
+required()
+placeholder('foo')
+attribute('foo', 'bar')
+attributes(['foo' => 'bar'])
+value('foo')
+label('foo')
+cssClass('foo') // set the class of the input field
+labelClass('foo') // set the field's label's class
+name('foo')
+accept(['json/application'])
+before('foo') // places Foo before the input field
+after('foo') // places Foo after the input field
+legend('foo')
+readonly() // set a field as readonly
+disabled() // set a field as disabled
+maxlength(5) // set a field's maxlength attribute
+size(5) // set a field's size attribute
+min(5) // set a field's min attribute
+max(5) // set a field's max attribute
+step(.5) // set a field's step attribute
+pattern('foo') // set the pattern attribute of the field
+multiple() // set if the field can accept multiple values
+autofocus() // set a field's autofocus attribute
+autocomplete() // set a field's autofocus attribute
+id('foo') // set a field's id attribute
+style('foo') // set a field's style attribute
+title('foo') // set a field's title attribute
+data('foo', 'bar') // add a data attribute to a field
+selectOptions(['foo' => 'bar']) // set the options for a select type field
+instance($foo) // set a Field's instance
+option('key', 'value') // set a field's option
+options(['key' => 'value']) // set a field's option as an array
+view('foo.bar') // set the view for the field template
+template('{field}') // set the template for the field
+model(User::class)
+modelMethod('getUsersWithRole') // default: all()
+modelParams(['role' => 'member']) // default: null
+modelValue('id') // default: id
+modelLabel('name') // default: name
+groupClass('foo') // class in a div around the label and input
+ungrouped() // remove the div around the label and input
+withoutLabel() // remove the label from the Field
+onlyField() // remove the label and wrapping div from the Field
+sortable() // make a field sortable in the rendered index
+canSelectNone() // give a select Field a null option
+noneLabel('foo') // set the label for the null option in a select Field
+visible() // make a Field visible in the rendered index
+hidden() // make a field hidden in the rendered index
+tableClass('foo') // set the class for the rendered index column
 ```
 
 #### Special Field Options
@@ -247,7 +326,7 @@ route: ""
 ```json
 file_size: "25MB"
 process_url: null
-submit-button: "button[type="submit"]"
+submit_button: "button[type="submit"]"
 upload_result_field: null
 ```
 
@@ -429,8 +508,8 @@ public function fields()
         Text::make('url', [
             'required' => true
         ]),
-        TextArea::make('entry', []),
-        Date::make('published_at', []),
+        TextArea::make('entry')->required(),
+        Date::make('published_at'),
     ];
 }
 ```
@@ -963,6 +1042,8 @@ app(UserForm::class)->index()->search('route.for.search', 'placeholder', 'Button
 Each field by default will be listed in the index. You can customize this by setting the `visible` option to `false`.
 
 If you wish to make a field sortable (asc|desc) then you can set the `sortable` option to `true`.
+
+If you wish to adjust the table class for the index list you can set the `table_class` option.
 
 #### Custom Query on Index
 

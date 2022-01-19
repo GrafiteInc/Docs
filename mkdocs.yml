@@ -81,7 +81,7 @@ nav:
     - Overview: scaffold/overview.md
     - Activity: scaffold/activity.md
     - API: scaffold/api.md
-    - PWA: scaffold/pwa.md
+    # - PWA: scaffold/pwa.md
     - Billing: scaffold/billing.md
     - Invites: scaffold/invites.md
     - Notifications: scaffold/notifications.md
@@ -93,6 +93,7 @@ nav:
     - Charts: utilities/charts.md
     - Database: utilities/database.md
     - Forms: utilities/forms.md
+    - Html: utilities/html.md
     - Helpers: utilities/helpers.md
   - Archived:
     - Overview: archived/index.md

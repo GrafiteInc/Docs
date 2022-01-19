@@ -51,7 +51,7 @@ $connection = 'alternate';
 
 ## Blade Directives
 
-Form Maker only has one blade directive and that is for handling any assets you may add to a field. In the case of the `Quill` field we load the CDN assets (javascript and css), and we inject a snippet of JavaScript. These assets need to be rendered in your view. Ideally this is done close to the closing body tag of your main template.
+Forms only has one blade directive and that is for handling any assets you may add to a field. In the case of the `Quill` field we load the CDN assets (javascript and css), and we inject a snippet of JavaScript. These assets need to be rendered in your view. Ideally this is done close to the closing body tag of your main template.
 
 ```php-inline
 @forms
@@ -130,14 +130,14 @@ There are a large collection of Fields available out of the box and a `make:fiel
 Any fields that include JS should have zero dependencies. Those that require jQuery obviously require jQuery.
 
 ```
-Boostrap/Country (includes JS, requires jQuery)
-Boostrap/HasMany (includes JS, requires jQuery)
-Boostrap/HasOne (includes JS, requires jQuery)
-Boostrap/Select (includes JS, requires jQuery)
-Boostrap/Suggest (includes JS, requires jQuery)
-Boostrap/Timezone (includes JS, requires jQuery)
-Boostrap/Toggle (includes JS, requires jQuery)
-Attributes
+Bootstrap/Country (includes JS, requires jQuery)
+Bootstrap/HasMany (includes JS, requires jQuery)
+Bootstrap/HasOne (includes JS, requires jQuery)
+Bootstrap/Select (includes JS, requires jQuery)
+Bootstrap/Suggest (includes JS, requires jQuery)
+Bootstrap/Timezone (includes JS, requires jQuery)
+Bootstrap/Toggle (includes JS, requires jQuery)
+Attachments
 Checkbox
 CheckboxInline
 Code (includes JS)
@@ -170,6 +170,7 @@ Range
 Search
 Select
 Slug (includes JS)
+SwitchToggle
 Tags (includes JS)
 Telephone
 Text

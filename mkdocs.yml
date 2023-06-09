@@ -89,11 +89,13 @@ nav:
     - Upgrade Guide: scaffold/upgrade.md
   - Utilities:
     - Overview: utilities/index.md
+    - Auth: utilities/auth.md
     - Bootstrap Magic Extras: utilities/bmx.md
     - Charts: utilities/charts.md
     - Database: utilities/database.md
     - Forms: utilities/forms.md
     - Html: utilities/html.md
+    - Support: utilities/support.md
     - Helpers: utilities/helpers.md
   - Archived:
     - Overview: archived/index.md

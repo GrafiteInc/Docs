@@ -13,6 +13,7 @@ Similar to our Forms package we have some simple directives for loading any need
 ```php-inline
 @htmlStyles
 @htmlScripts
+@htmlAssets
 ```
 
 Just place that below any of your JavaScript file references and you can easily load the html assets when the content is being rendered on screen.
@@ -20,7 +21,9 @@ Just place that below any of your JavaScript file references and you can easily 
 ## Components
 
 ```
+Accordion
 Alert
+Avatar
 Breadcrumbs
 Card
 Carousel
@@ -32,19 +35,94 @@ DropdownItemButton
 Feed
 FeedItem
 ListGroup
+Map
 Modal
 Nav
 NavBar
 NavButton
 NavDropdown
 NavLink
+OffCanvas
 Progress
 SortTextWithIcon
 Spinner
 Table
 ```
 
-### Component Methods Available
+## The HtmlTagComponent
+
+This class base lets us create our own global components for any needs in our application. These are single-file components, containing JavaScript, Styles and HTML content.
+
+Below is an example of an overlay component.
+
+```
+<?php
+
+namespace App\View\Components\Global;
+
+use Grafite\Html\Tags\HtmlTagComponent;
+
+class PendingOverlay extends HtmlTagComponent
+{
+    public static function template()
+    {
+        return <<<HTML
+            <div id="_componentPendingOverlay" class="overlay d-none bg-dark">
+                <div class="spinner-container">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        HTML;
+    }
+
+    public static function styles()
+    {
+        return <<<CSS
+            .overlay {
+                width: 100%;
+                height: 100vh;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 30000;
+                opacity: .8;
+            }
+            .spinner-container {
+                position: absolute;
+                top: 49%;
+                left: calc(50% - 15px);
+            }
+        CSS;
+    }
+
+    public static function js()
+    {
+        return <<<JS
+            window.pending = (button) => {
+                if (button && button.form.checkValidity()) {
+                    button.form.submit();
+                    button.disabled = true;
+                    document.getElementById('_componentPendingOverlay').classList.remove('d-none');
+                }
+
+                if (! button) {
+                    document.getElementById('_componentPendingOverlay').classList.remove('d-none');
+                }
+
+                return false;
+            };
+
+            window.pendingHide = () => {
+                document.getElementById('_componentPendingOverlay').classList.add('d-none');
+            };
+        JS;
+    }
+}
+```
+
+## Component Methods Available
 
 To generate any component you must first call the make method statically. `Alert::make()`. Subsequently, you need to end all component chains with the `render()` method or the `renderWhen` method.
 
@@ -62,10 +140,16 @@ attributes() => $attributes
 
 Some components have unique properties which have unique methods to call each of them to set their values. Below is a list of any unique properties that can be set for the components.
 
+#### Accordion
+- show() // start by showing all open
+
 #### Alert
 - background(string $value) // color
 - heading(string $value) // text
 - dismiss() // enables dismiss button
+
+#### Avatar
+- image($string) // a url path to an image
 
 #### Card
 - body(string $value) // text
@@ -82,6 +166,25 @@ Some components have unique properties which have unique methods to call each of
 - content(string $value) // body content for the item
 - date(string $value) // date for the item
 - icon(string $value, string $value) // an icon (fontawesome?) and a css color
+
+#### Map
+- marker($x, $y, $tooltip = null, $click = null) // a marker for the map
+- center($x, $y) // the center of the map
+- skin($url) // a URL for a LeafletJS map tiles string
+- bubbles(array [
+    [
+        'x' => null,
+        'y' => null,
+        'color' => null,
+        'fill' => null,
+        'opacity' => null,
+        'radius' => null,
+        'tooltip' => null,
+        'click' => null,
+    ]
+])
+- zoom(int $int) // starting zoom level
+- maxZoom(int $int) // max level of the zoom
 
 #### Modal
 - content(string $value) // content for the modal body
@@ -110,6 +213,35 @@ Some components have unique properties which have unique methods to call each of
 - keys(collection $value) // keys which can be used for headers
 - headers(collection $value) // headers which can override the keys
 - sortable(string $value) // a JS method which is triggered onclick
+
+## As Blade Tags
+
+The following HTML components have blade tags which can also be used.
+
+```
+Accordion
+ActionDropdown
+Alert
+Breadcrumbs
+Card
+Carousel
+DropdownDivider
+DropdownItem
+DropdownItemButton
+Feed
+FeedItem
+ListGroup
+ListGroupItem
+Modal
+Nav
+NavButton
+NavLink
+Offcanvas
+Progress
+Spinner
+Table
+Tag
+```
 
 ## Core Methods
 

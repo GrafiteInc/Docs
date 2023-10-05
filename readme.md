@@ -5,7 +5,12 @@ This is the Grafite package documentation repository. It uses Mkdocs.
 ## Active Packages
 
 - Scaffold
-- FormMaker
+- Forms
+- Charts
+- BMX
+- Auth
+- Html
+- Support
 - Database
 - Helpers
 

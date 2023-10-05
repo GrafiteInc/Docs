@@ -8,6 +8,24 @@ Sometimes its just nice to have a package which can contain some handy little to
 
 Helpers are handy tools for regular things we have to do in our applications such as String manipulation or extraction.
 
+### RouteHelper
+
+`route_link_class($route, $active = 'active', $class = 'nav-link')`
+
+This global method will let you handle auto setting a link as active.
+
+### Session Helper
+
+`session_error_message()`
+
+This will implode all errors from the responses with error messages.
+
+`javascript_session_data($nonce = false)`
+
+This helper method lets use initialize an app with a simple notion of `window.app` with `window.app.session` which we can use for various error and success message notification tools, including Laravel Echo etc.
+
+In order to have this above method work correctly you need to add this trait to your User Model: `HasJavascriptData`
+
 ### Stringy
 
 Stringy is a helper for handling extraction of key information from strings. To begin using Stringy we simply call it as `Stringy::of($string)`.
@@ -36,6 +54,27 @@ asPlainText() // output the string as plain text
 ## Model Concerns
 
 Sometimes in our apps we have models that have similar conerns. We use traits to handle these, below are concerns we find commonly used in many applications.
+
+### CanAccessFeatures
+
+A simple feature wrapper tool.
+
+Config example:
+You can run with Global or User based features.
+```
+[
+    // Global based
+    // 'portal' => env('FEATURE_PORTAL', false),
+
+    // User based
+    // 'portal' => [
+    //     'state' => env('FEATURE_PORTAL', false),
+    //     'users' => env('FEATURE_PORTAL_USERS', [])
+    //],
+]
+```
+
+To check you can easily check for access with `$user->hasFeatureAccess($key)`
 
 ### DatabaseSearchable
 

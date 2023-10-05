@@ -41,6 +41,7 @@ barWidth: The width of the bars in bar graphs (40)
 type: The chart type (line)
 maintainAspectRatio: Whether or not to maintain the aspect ratio (false)
 beginAtZero: Begin the chart at zero (true)
+axesAttributes: `x-font-size` and `y-font-size` (array) [default is 14]
 ```
 
 ## Labels and Datasets

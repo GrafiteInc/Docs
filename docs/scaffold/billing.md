@@ -8,7 +8,7 @@ Some familiarity and an accout with Stripe.
 
 ## Outline
 
-The billing system handles the stripe integration with cashier as mentioned. For the front-end elements scaffold comes with some vanilla javascript files which handle the setup of credit cards which adhere to North American and European laws. The remainder of integrations with Stripe occur through PHP components. It contains the `webhook` endpoint for Stripe feedback as well as a simple config file for handling various "plans" your app may offer.
+The billing system handles the stripe integration with cashier as mentioned. The remainder of integrations with Stripe occur through PHP components. It contains the `domain.com/stripe/webhook` endpoint for Stripe feedback as well as a simple config file for handling various "plans" your app may offer.
 
 ## Config
 
@@ -22,10 +22,6 @@ Within the billing config you can set the details for your invoices as well as t
 
 As with all Stripe integrations including Cashier all you recieve is the last 4 digits of a credit card when the subscription is generated. The billing UI provides the user with which card their subscription is on, as well as the name of the plan they are on. It also shows their billing email, state and country. This can be helpful for any form of tax filings you need to do.
 
-## Payment Method
-
-Within the payment method tab the user can change their payment method.
-
 ## Change Plan
 
 This allows the user to change their subscription plan which is then prorated as per Stripe's default methods.
@@ -34,6 +30,21 @@ This allows the user to change their subscription plan which is then prorated as
 
 We've integrated Stripe coupons into this as well. You can generate coupons on Stripe and enable you users to enter them on the 'Coupons' tab in the billing portion of the app.
 
-## Invoices
+## Billing Portal
 
-Invoices are downloadable PDF files, and the upcoming invoice data is listed on the main billing tab.
+Rather than maintain a complex set of forms and views for payment methods, cancelling, renewing, and invoices, Scaffold by default lets Stripe handle all that with the billing portal.
+
+In order to ensure you have everything set up correctly you need to have a Stripe account and some ENVs set.
+
+```
+PLAN_MONTHLY={price_token}
+PLAN_YEARLY={price_token}
+
+STRIPE_KEY={dev_public}
+STRIPE_SECRET={dev_secret}
+STRIPE_WEBHOOK_SECRET={webhook_secret}
+
+CASHIER_CURRENCY=USD
+```
+
+Within Stripe's dashboard you need to set up your products, some pricing the `billing` config handles the two cases of monthly and yearly. Within products you create prices to ensure you do that properly. You then need to configure the webhook which can be done either directly in the UI: please follow Laravel's Cashier docs for those details OR you can use their command `php artisan cashier:webhook`. Lastly, you need to set up your "Customer Billing Portal" and ensure its branding matches what you want for your product.

@@ -172,6 +172,7 @@ Bootstrap/Toggle (includes JS, requires jQuery)
 Attachments (includes JS)
 AutoSuggest (includes JS)
 AutoSuggestSelect (includes JS)
+AutosizeTextArea (includes JS)
 Checkbox
 CheckboxInline
 Code (includes JS)
@@ -189,8 +190,10 @@ Email
 File
 FilePond (includes JS)
 FileWithPreview (includes JS)
+GrapesJs
 HasMany
 HasOne
+hCaptcha
 Hidden
 Image
 Month
@@ -214,6 +217,7 @@ TextArea
 Time
 Timezone (includes JS)
 Toggled (includes JS)
+Trix
 Typeahead (includes JS, requires jQuery)
 Url
 Week
@@ -246,9 +250,9 @@ attribute('foo', 'bar')
 attributes(['foo' => 'bar'])
 value('foo')
 label('foo')
+name('foo')
 cssClass('foo') // set the class of the input field
 labelClass('foo') // set the field's label's class
-name('foo')
 accept(['json/application'])
 before('foo') // places Foo before the input field
 after('foo') // places Foo after the input field
@@ -289,6 +293,8 @@ noneLabel('foo') // set the label for the null option in a select Field
 visible() // make a Field visible in the rendered index
 hidden() // make a field hidden in the rendered index
 tableClass('foo') // set the class for the rendered index column
+submitOnChange() // enable changing a field to trigger a submit
+submitOnKeyUp() // enable key up on a field to trigger a submit
 ```
 
 #### Special Field Options
@@ -375,6 +381,15 @@ preview_identifier: "" // class or ID for an avatar img or div
 preview_as_background_image: false
 ```
 
+##### hCaptcha
+Add this to your `services.php` config file.
+```
+'hcaptcha' => [
+    'sitekey' => env('HCAPTCHA_SITEKEY'),
+    'secret' => env('HCAPTCHA_SECRET'),
+],
+```
+
 ##### Editor
 
 Uses the latest EditorJS as its WYSIWYG editor.
@@ -429,6 +444,18 @@ upload_route: "upload.image"
 ```
 
 *Special*
+
+###### Interaction
+```
+mention_ats: users you want to show in a popup when the user enters "@"
+mention_hashes: hashes you want to show in a popup when the user enters "#"
+mention_links: links you want to show in a popup when the user enters "^"
+mention_link_path: A path for when the user clicks on the link path
+mention_at_path: A path for when the user clicks on the user mention
+mention_hash_path: A path for when the user clicks on the mention hash
+```
+
+###### Images
 
 If you want to use images inside Quill you need to have a route which can handle the image uploads. Storing images as data-urls (Quill default method) is never wise. The following is an example of a Controller invoke method which can handle the file uploads.
 
@@ -1002,6 +1029,8 @@ This will generate a form with these fields only. You can also set the `orientat
 
 `$confirmMethod` sets the method name for the `onclick` event when clicking on the delete button
 
+`$confirmSubmission` sets a string value for the confirmation popup on a form submission
+
 With the `delete()` form you can also add the confirmation method like so:
 
 ```php-inline
@@ -1322,9 +1351,15 @@ If you have some fields which have JavaScript running elements of them you can e
 
 This tells Livewire to NOT perform the DOM diff on the child Form elements. This means your form doesn't try to reload its components etc.
 
+#### One more thing
+
+If you do autoloading of forms via Livewires content swapping system, these forms will NOT have any of the event bindings set. You will need to rerun `window.FormsJS()`. This will not interupt any previously rendered forms as they are marked as processed.
+
 ## Parsers
 
 Some fields require parsers since the data they store isn't very consumable by default. `Editor` is a great example of this. The `Editor` field stores a JSON object of blocks of HTML. This can then use the `Editor` Parser to convert it to proper HTML for end user consumption.
 
 Parsers should have `parse`, `handler`, and `render` methods generally to handle accepting data, processing it and rendering it as HTML or other content.
 
+## Content-Security-Policy
+Forms generally works by adding data attributes to field and form elements and then having a script on DOMContentLoaded run which handles all the bindings etc. You can add a nonce value to the `@forms()` directive if you need to. If there are any issues with it please report them accordingly.

@@ -41,6 +41,7 @@ Animations can have a `duration` and `delay` set for them. By default all animat
 #### Bounce
 ```html
 <p class="bmx-bounce">Just Bounce</p>
+<p class="bmx-bounce-in">Bounce into visibility</p>
 <p class="bmx-bounce-hover">Bounce on Hover</p>
 ```
 
@@ -84,10 +85,20 @@ Animations can have a `duration` and `delay` set for them. By default all animat
 <p class="bmx-swing-hover">Swing on Hover</p>
 ```
 
+#### Slide
+```html
+<p class="bmx-slide-in-down">Slide in down</p>
+```
+
 #### Tada
 ```html
 <p class="bmx-tada">Just tada</p>
 <p class="bmx-tada-hover">Tada on Hover</p>
+```
+
+#### Zoom
+```html
+<p class="bmx-zoom-in">Zoom in</p>
 ```
 
 ## Utilities

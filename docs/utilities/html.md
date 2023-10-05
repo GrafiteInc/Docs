@@ -14,19 +14,30 @@ Similar to our Forms package we have some simple directives for loading any need
 @htmlStyles
 @htmlScripts
 @htmlAssets
+@fathom
 ```
 
 Just place that below any of your JavaScript file references and you can easily load the html assets when the content is being rendered on screen.
+
+As for the `Fathom` directive, ensure that you have the following added to your services:
+
+```
+'fathom' => [
+    'key' => env('FATHOM_KEY'),
+],
+```
 
 ## Components
 
 ```
 Accordion
+Annoucement
 Alert
 Avatar
 Breadcrumbs
 Card
 Carousel
+Calendar
 DropdownButton
 DropdownButtonAction
 DropdownDivider
@@ -35,6 +46,7 @@ DropdownItemButton
 Feed
 FeedItem
 ListGroup
+Image
 Map
 Modal
 Nav
@@ -46,7 +58,13 @@ OffCanvas
 Progress
 SortTextWithIcon
 Spinner
+Rating
 Table
+Tilt
+Animations/Hamster
+Animations/Pulse
+Animations/Spaceman
+Animations/Typewriter
 ```
 
 ## The HtmlTagComponent

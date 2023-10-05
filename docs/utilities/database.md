@@ -74,3 +74,35 @@ You can specify the filename you want for the downloaded file and set the file f
 ```
 php artisan db:download {filename} {uploaded-backup-filename}
 ```
+
+## Size
+
+Get a database size overall.
+
+```
+php artisan db:size {database}
+```
+
+## Table Empty
+
+Truncate a database table. You can set a key and date and have it purge the data old than a specified date if you don't want to purge the whole table.
+
+```
+php artisan db:table-empty {table} {--days=} {--key=failed_at}
+```
+
+## Table Optimize
+
+Optimize a database table. This can be helpful for indexes etc.
+
+```
+php artisan db:table-optimize {table}
+```
+
+## Table Start
+
+Set the start value of an id column for a table. By default it will choose a number between 999 and 99,999
+
+```
+php artisan db:table-start {table} {--number=}
+```

@@ -13,6 +13,7 @@ Please consult documentation related to these packages if you wish to work with 
 [grafite/database](https://github.com/GrafiteInc/Database){:target="_blank"}<br>
 [grafite/forms](https://github.com/GrafiteInc/Forms){:target="_blank"}<br>
 [grafite/html](https://github.com/GrafiteInc/Html){:target="_blank"}<br>
+[grafite/support](https://github.com/GrafiteInc/Support){:target="_blank"}<br>
 [intervention/image](https://github.com/Intervention/image){:target="_blank"}<br>
 [laravel/cashier](https://github.com/laravel/cashier){:target="_blank"}<br>
 [laravel/helpers](https://github.com/laravel/helpers){:target="_blank"}<br>

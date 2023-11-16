@@ -47,4 +47,19 @@ STRIPE_WEBHOOK_SECRET={webhook_secret}
 CASHIER_CURRENCY=USD
 ```
 
+## Stripe Dashboard
+
 Within Stripe's dashboard you need to set up your products, some pricing the `billing` config handles the two cases of monthly and yearly. Within products you create prices to ensure you do that properly. You then need to configure the webhook which can be done either directly in the UI: please follow Laravel's Cashier docs for those details OR you can use their command `php artisan cashier:webhook`. Lastly, you need to set up your "Customer Billing Portal" and ensure its branding matches what you want for your product.
+
+### Tax
+
+> These links are to the test endpoints, you will need to do the same on live/prod mode.
+
+If you enable tax you need to set an origin location for your business:
+
+https://dashboard.stripe.com/test/settings/tax
+
+You need to also ensure that your billing portal is configured or "enabled"
+
+https://dashboard.stripe.com/test/settings/billing/portal
+

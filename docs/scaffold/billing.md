@@ -20,15 +20,30 @@ Within the billing config you can set the details for your invoices as well as t
 
 ## User Data
 
-As with all Stripe integrations including Cashier all you recieve is the last 4 digits of a credit card when the subscription is generated. The billing UI provides the user with which card their subscription is on, as well as the name of the plan they are on. It also shows their billing email, state and country. This can be helpful for any form of tax filings you need to do.
+As with all Stripe integrations including Cashier all you recieve is the last 4 digits of a credit card when the subscription is generated. The billing UI provides the user with which card their subscription is on, as well as the name of the plan they are on.
+
+## Webhooks and testing
+
+The webhook setup is key to having everything function well with the portal system. Ideally, we don't want to touch any customer data so its best to be able to direct accordingly. Webhooks will provide us with the state changes that happen in the Stripe UI.
+
+You can review how to test your webhooks here:
+
+https://stripe.com/docs/stripe-cli
+
+Some commands you will need to run locally:
+
+```sh
+stripe login
+stripe listen --forward-to https://{local-domain}/stripe/webhook
+```
 
 ## Change Plan
 
-This allows the user to change their subscription plan which is then prorated as per Stripe's default methods.
+This should be handled in the customer portal configuration.
 
-## Coupons
+## Coupons / Promotional Codes
 
-We've integrated Stripe coupons into this as well. You can generate coupons on Stripe and enable you users to enter them on the 'Coupons' tab in the billing portion of the app.
+This should be configured within the customer portal configuration. These are added when a person subscribes or updates a subscription.
 
 ## Billing Portal
 

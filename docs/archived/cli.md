@@ -34,7 +34,7 @@ This will set up the Grafite Builder Billing kit, this means you can set up a su
 
 ### Make CMS
 
-Make CMS works just like the `make:app` command meaning it will set up a basic app using Laravel and Grafite Builder, it will by default use bootstrap for the UI kit. It then adds in the use of Grafite CMS. It will publish the theme to the app along with the basic Controllers and routes for accessing contents of the CMS. Please consult the [Grafite CMS Docs](https://docs.grafite.ca/cms) for more information.
+Make CMS works just like the `make:app` command meaning it will set up a basic app using Laravel and Grafite Builder, it will by default use bootstrap for the UI kit. It then adds in the use of Grafite CMS. It will publish the theme to the app along with the basic Controllers and routes for accessing contents of the CMS. Please consult the [Grafite CMS Docs](https://docs.grafite.ca/archived/cms) for more information.
 
 <!-- ### E-commerce Option
 

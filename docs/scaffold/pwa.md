@@ -1,5 +1,7 @@
 # PWA
 
+npm install puppeteer
+npm install pwa-asset-generator
 pwa-asset-generator ./public/images/missioncontrol-logo.png ./public/images/icons --opaque false  --scrape false
 
 Scaffold comes with a fully functional API layer. It handles authentication using basic auth using user generated tokens. Tokens can be reset and are encrypted so they're only visible on the moment of reset.

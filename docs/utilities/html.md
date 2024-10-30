@@ -61,6 +61,8 @@ Spinner
 Rating
 Table
 Tilt
+Video
+WordSwitcher
 Animations/Hamster
 Animations/Pulse
 Animations/Spaceman
@@ -232,6 +234,21 @@ Some components have unique properties which have unique methods to call each of
 - headers(collection $value) // headers which can override the keys
 - sortable(string $value) // a JS method which is triggered onclick
 
+#### Tilt
+- startX(int $value) // the X angle to start at
+- startY(int $value) // the Y angle to start at
+- glare(bool $value) // if the panel has a glare
+
+#### Video
+- type(string $value) // video, audio, youtube, vimeo
+- source(string $value) // the source url
+- poster(string $value) // a poster image for loading
+
+#### WordSwitcher
+- duration(int $value) // the duration of the animation (default: 0)
+- delay(int $value) // the delay between strings (default: 3000)
+- random(bool $value) // if the words are random
+
 ## As Blade Tags
 
 The following HTML components have blade tags which can also be used.
@@ -259,6 +276,7 @@ Progress
 Spinner
 Table
 Tag
+WordSwitcher
 ```
 
 ## Core Methods
